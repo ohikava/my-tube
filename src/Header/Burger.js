@@ -39,7 +39,7 @@ const Line = styled.div`
 `;
 
 const Burger = ({cb}) => (
-  <Wrapper onClick={cb}>
+  <Wrapper onClick={cb} data-testid={'burger'}>
     <Line />
   </Wrapper>
 );

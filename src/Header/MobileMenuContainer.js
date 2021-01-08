@@ -19,7 +19,7 @@ const Wrapper = styled.div`
 `;
 
 const MobileMenuContainer = ({isOpen, children}) => (
-  <Wrapper isOpen={isOpen}>
+  <Wrapper isOpen={isOpen} data-testid={'mobilemenucontainer'}>
     {children}
   </Wrapper>
 );
