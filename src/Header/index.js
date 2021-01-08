@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import Burger from "./Burger";
 import MobileMenuContainer from "./MobileMenuContainer";
 import Search from "./Search";
+import HideFromMobile from "../utils/HideFromMobile";
 
 const Wrapper = styled.header`
   display: flex;
@@ -26,6 +27,9 @@ const Header = () => {
   return (
     <Wrapper>
       <Logo>LETUBE</Logo>
+      <HideFromMobile border={760}>
+        <Search />
+      </HideFromMobile>
       <Burger cb={() => openMobileMenu(!isMobileMenuOpen)} />
       <MobileMenuContainer isOpen={isMobileMenuOpen}>
         <Search />

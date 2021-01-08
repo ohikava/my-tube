@@ -6,7 +6,7 @@ const Wrapper = styled.div`
   width: 30px;
   height: 20px;
   position: relative;
-  @media(min-width: 425px) {
+  @media(min-width: 760px) {
     display: none;
   }
   &:before {

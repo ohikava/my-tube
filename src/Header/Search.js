@@ -6,6 +6,10 @@ const Wrapper = styled.div`
   width: 100%;
   gap: 10px;
   background: #fff;
+
+  @media(min-width: 760px) {
+    width: 45%;
+  }
 `;
 const Input = styled.input`
   height: 2.2rem;
@@ -16,6 +20,9 @@ const Input = styled.input`
   padding-left: 5px;
   //outline-color: ${props => props.theme.activecold};
   width: 82%;
+  @media(min-width: 760px) {
+    width: 93%;
+  }
 `;
 const Button = styled.img`
   width: 1.2rem;
