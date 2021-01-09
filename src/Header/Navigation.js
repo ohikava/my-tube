@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 const Wrapper = styled.nav`
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 5px;
   margin-top: 10px;
 `;
 

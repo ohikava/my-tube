@@ -14,6 +14,7 @@ const Wrapper = styled.div`
   transition: 1s;
   background: ${props => props.theme.extrcolor};
   top: 0;
+  gap: 10px;
   ${props => props.isOpen && css`
     left: 0;
     `}

@@ -102,6 +102,9 @@ const Header = () => {
         </Navigation>
         <Title>Подписки</Title>
         <Subscriptions />
+        <Item>Загрузить</Item>
+        <Item>Аккаунт</Item>
+        <Item>Настройки</Item>
       </MobileMenuContainer>
     </Wrapper>
   )

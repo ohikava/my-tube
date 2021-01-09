@@ -24,7 +24,6 @@ let data = [
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
-  padding: 10px 0;
   gap: 5px;
   @media(min-width: 768px) {
     display: ${props => props.isOpenNotifications ? "flex" : "none"};
