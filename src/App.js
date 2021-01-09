@@ -7,6 +7,7 @@ const theme = {
   extrcolor: '#d4f5c5',
   fontcolor: '#000',
   activecold: '#2b5eff',
+  activecoldfilter: "invert(27%) sepia(48%) saturate(2739%) hue-rotate(214deg) brightness(115%) contrast(115%)",
   fontfamily: 'Source Sans Pro'
 };
 

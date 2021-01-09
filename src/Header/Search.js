@@ -6,6 +6,7 @@ const Wrapper = styled.div`
   width: 100%;
   gap: 10px;
   background: #fff;
+  padding: 0 10px;
 
   @media(min-width: 760px) {
     width: 45%;
@@ -17,7 +18,6 @@ const Input = styled.input`
   outline: none;
   font-family: inherit;
   font-size: 1.3rem;
-  padding-left: 5px;
   //outline-color: ${props => props.theme.activecold};
   width: 82%;
   @media(min-width: 760px) {
@@ -31,7 +31,7 @@ const Button = styled.img`
 const Search = () => {
   return (
     <Wrapper>
-      <Input />
+      <Input placeholder="Введите запрос  " />
       <Button src="loupe.svg"/>
     </Wrapper>
   )
