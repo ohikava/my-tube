@@ -4,11 +4,15 @@ import Burger from "./Burger";
 import MobileMenuContainer from "./MobileMenuContainer";
 import Search from "./Search";
 import HideFromMobile from "../utils/HideFromMobile";
+import Notifications from "./Notifications";
 
 const Wrapper = styled.header`
   display: flex;
   justify-content: space-between;
-  padding: 15px 50px;
+  padding: 15px 15px;
+  @media(min-width: 768px) {
+    padding: 15px 50px;
+  }
   position: fixed;
   top: 0;
   left: 0;
@@ -36,8 +40,15 @@ const Icon = styled.img`
   }
 `;
 
+const Title = styled.span`
+  font-size: 1.3rem;
+  margin-top: 15px;
+`;
+
 const Header = () => {
   const [isMobileMenuOpen, openMobileMenu] = useState(false);
+  const [isOpenNotifications, openNotifications] = useState(false);
+
   return (
     <Wrapper>
       <Logo>LETUBE</Logo>
@@ -45,7 +56,8 @@ const Header = () => {
         <Search />
         <div>
         <Icon src="create-video.svg" />
-        <Icon src="bell.svg" />
+        <Icon src="bell.svg" onClick={() => openNotifications(!isOpenNotifications)}/>
+        <Notifications isOpenNotifications={isOpenNotifications}/>
         <Icon src="user-profile.svg" />
         <Icon src="settings.svg" />
         </div>
@@ -53,6 +65,8 @@ const Header = () => {
       <Burger cb={() => openMobileMenu(!isMobileMenuOpen)} />
       <MobileMenuContainer isOpen={isMobileMenuOpen}>
         <Search />
+        <Title>Уведомления</Title>
+        <Notifications/>
       </MobileMenuContainer>
     </Wrapper>
   )
