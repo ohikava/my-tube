@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 
 const Wrapper = styled.div`
   position: fixed;
+  overflow: scroll;
   left: -100%;
   width: 80%;
   display: flex;

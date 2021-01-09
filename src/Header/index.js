@@ -7,6 +7,7 @@ import HideFromMobile from "../utils/HideFromMobile";
 import Notifications from "./Notifications";
 import Item from "./Item";
 import Navigation from "./Navigation";
+import Subscriptions from "./Subscriptions";
 
 const Wrapper = styled.header`
   display: flex;
@@ -99,6 +100,8 @@ const Header = () => {
         <Navigation>
           {navigation.map(i => <Item>{i.body}</Item>)}
         </Navigation>
+        <Title>Подписки</Title>
+        <Subscriptions />
       </MobileMenuContainer>
     </Wrapper>
   )
