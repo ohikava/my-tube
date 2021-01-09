@@ -5,6 +5,8 @@ import MobileMenuContainer from "./MobileMenuContainer";
 import Search from "./Search";
 import HideFromMobile from "../utils/HideFromMobile";
 import Notifications from "./Notifications";
+import Item from "./Item";
+import Navigation from "./Navigation";
 
 const Wrapper = styled.header`
   display: flex;
@@ -45,6 +47,33 @@ const Title = styled.span`
   margin-top: 15px;
 `;
 
+const navigation = [
+  {
+    body: "Главная",
+    link: ""
+  },
+  {
+    body: "В тренде",
+    link: ""
+  },
+  {
+    body: "Подписки",
+    link: ""
+  },
+  {
+    body: "Ваши видео",
+    link: ""
+  },
+  {
+    body: "Смотреть позже",
+    link: ""
+  },
+  {
+    body: "Понравившиеся",
+    link: ""
+  }
+];
+
 const Header = () => {
   const [isMobileMenuOpen, openMobileMenu] = useState(false);
   const [isOpenNotifications, openNotifications] = useState(false);
@@ -67,6 +96,9 @@ const Header = () => {
         <Search />
         <Title>Уведомления</Title>
         <Notifications/>
+        <Navigation>
+          {navigation.map(i => <Item>{i.body}</Item>)}
+        </Navigation>
       </MobileMenuContainer>
     </Wrapper>
   )
