@@ -1,6 +1,8 @@
 import React from 'react';
 import Header from "./Header";
 import {ThemeProvider,createGlobalStyle} from "styled-components";
+import Home from "./Home";
+import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 
 const theme = {
   maincolor: '#b0e2a7',
@@ -32,6 +34,13 @@ function App() {
       <ThemeProvider theme={theme}>
         <Header />
         <GlobalStyle />
+        <Router>
+          <Switch>
+            <Route path="/" exact>
+              <Home />
+            </Route>
+          </Switch>
+        </Router>
       </ThemeProvider>
     </div>
   );

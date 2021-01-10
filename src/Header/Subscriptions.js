@@ -27,19 +27,28 @@ const subscriptions = [
   }
 ];
 
+const Title = styled.span`
+  font-size: 1.3rem;
+`;
+
 const More = styled.span`
   font-size: 1rem;
+  cursor: pointer;
   text-align: center;
   color: ${props => props.theme.activecold};
+  @media(min-width: 768px) {
+    text-align: start;
+  }
 `;
 
 const Subscriptions = () => {
   return (
     <Wrapper>
+    <Title>Мои подписки</Title>
       {
         subscriptions.map((i, index) => <Item i={i} />)
       }
-      <More>Show More</More>
+      <More>Показать больше</More>
     </Wrapper>
   )
 };

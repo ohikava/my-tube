@@ -8,6 +8,7 @@ import Notifications from "./Notifications";
 import Item from "./Item";
 import Navigation from "./Navigation";
 import Subscriptions from "./Subscriptions";
+import Playlists from "./Playlists";
 
 const Wrapper = styled.header`
   display: flex;
@@ -100,8 +101,8 @@ const Header = () => {
         <Navigation>
           {navigation.map(i => <Item>{i.body}</Item>)}
         </Navigation>
-        <Title>Подписки</Title>
         <Subscriptions />
+        <Playlists />
         <Item>Загрузить</Item>
         <Item>Аккаунт</Item>
         <Item>Настройки</Item>

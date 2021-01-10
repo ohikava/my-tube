@@ -2,7 +2,7 @@ import React from "react";
 import Item from "./Item";
 import {unmountComponentAtNode, render} from "react-dom";
 import {act} from "react-dom/test-utils";
-import Notifications from "./Notifications";
+import NotificationItem from "./NotificationItem";
 
 let container = null;
 beforeEach(() => {
