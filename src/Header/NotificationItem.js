@@ -6,6 +6,7 @@ const Wrapper = styled.div`
   display: flex;
   gap: 15px;
   align-items: center;
+  cursor: pointer;
 `;
 const Icon = styled.img`
   width: 1.8rem;

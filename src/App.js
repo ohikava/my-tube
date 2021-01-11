@@ -26,15 +26,18 @@ const GlobalStyle = createGlobalStyle`
     font-size: 10px;
     font-family: ${props => props.theme.fontfamily} 'sans-serif';
   }
+  a {
+    text-decoration: none;
+  }
 `;
 
 function App() {
   return (
     <div className="App">
       <ThemeProvider theme={theme}>
-        <Header />
         <GlobalStyle />
         <Router>
+          <Header />
           <Switch>
             <Route path="/" exact>
               <Home />

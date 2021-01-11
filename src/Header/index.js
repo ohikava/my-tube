@@ -1,6 +1,7 @@
 import React,{useState} from 'react';
 import styled from 'styled-components';
 import Burger from "./Burger";
+import {Link} from "react-router-dom";
 import MobileMenuContainer from "./MobileMenuContainer";
 import Search from "./Search";
 import HideFromMobile from "../utils/HideFromMobile";
@@ -29,6 +30,8 @@ const Wrapper = styled.header`
 const Logo = styled.div`
   font-size: 1.5rem;
   letter-spacing: 1.5px;
+  cursor: pointer;
+  color: #000;
 `;
 
 const Icon = styled.img`
@@ -83,7 +86,9 @@ const Header = () => {
 
   return (
     <Wrapper>
-      <Logo>LETUBE</Logo>
+      <Link to="/">
+        <Logo>LETUBE</Logo>
+      </Link>
       <HideFromMobile border={760}>
         <Search />
         <div>

@@ -6,10 +6,16 @@ import {formatViews, formatDate} from "../utils/format";
 const Wrapper = styled.div`
   display: grid;
   grid-template-columns: 1fr 6fr;
+  gap: 5px;
+  cursor: pointer;
   padding-bottom: 25px;
+  @media(min-width: 768px) {
+    padding: 0;
+  }
 `;
 const Thumb = styled.img`
   max-width: 100%;
+  width: 100%;
 `;
 const Icon = styled.img`
   width: 2.4rem;
@@ -17,6 +23,10 @@ const Icon = styled.img`
 `;
 const Title = styled.span`
   font-size: 1rem;
+  display: block;
+  @media(min-width: 768px) {
+    height: 70px;
+  }
 `;
 const Views = styled.span`
   font-size: .8rem;

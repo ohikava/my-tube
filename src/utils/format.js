@@ -10,7 +10,7 @@ module.exports = {
       result = init / 1000;
       result = result + " тыс";
     } else {
-      result = init;
+      result = init + "";
     }
     return result;
   },

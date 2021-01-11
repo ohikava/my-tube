@@ -8,8 +8,11 @@ import Playlists from "../Header/Playlists";
 import Videos from "./Videos";
 
 const Wrapper = styled.div`
-  @media(min-width: 468px) {
+  padding: 100px 0 0 0;
+  @media(min-width: 768px) {
     padding: 80px 0 80px 50px;
+    display: flex;
+    gap: 30px;
   }
 `;
 
