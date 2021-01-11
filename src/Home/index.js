@@ -5,6 +5,7 @@ import Navigation from "../Header/Navigation";
 import Item from "../Header/Item";
 import Subscriptions from "../Header/Subscriptions";
 import Playlists from "../Header/Playlists";
+import Videos from "./Videos";
 
 const Wrapper = styled.div`
   @media(min-width: 468px) {
@@ -57,6 +58,7 @@ const Home = () => (
         <Playlists />
       </NavigationPanel>
     </HideFromMobile>
+    <Videos />
   </Wrapper>
 );
 

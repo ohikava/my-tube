@@ -14,6 +14,7 @@ const Wrapper = styled.header`
   display: flex;
   justify-content: space-between;
   padding: 15px 15px;
+  z-index: 5;
   @media(min-width: 768px) {
     padding: 15px 50px;
   }
