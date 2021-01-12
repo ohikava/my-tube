@@ -1,6 +1,7 @@
 import React, {useEffect} from "react";
 import styled from 'styled-components';
 import Thumbnail from "./Thumbnail";
+import SkeletonVideos from "./SkeletonVideos";
 import {useDispatch, useSelector} from "react-redux";
 import {getVideos} from "../services/VideoReducer/actions";
 
@@ -24,7 +25,7 @@ const Videos = () => {
   return (
     <Wrapper>
       {
-        date.map(i => <Thumbnail i={i} id={i.id}/>)
+        date.length > 0 ? date.map(i => <Thumbnail i={i} id={i.id}/>) : <SkeletonVideos />
       }
     </Wrapper>
   )
