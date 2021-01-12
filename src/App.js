@@ -3,6 +3,8 @@ import Header from "./Header";
 import {ThemeProvider,createGlobalStyle} from "styled-components";
 import Home from "./Home";
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
+import {Provider} from "react-redux";
+import store from "./services";
 
 const theme = {
   maincolor: '#b0e2a7',
@@ -34,17 +36,19 @@ const GlobalStyle = createGlobalStyle`
 function App() {
   return (
     <div className="App">
-      <ThemeProvider theme={theme}>
-        <GlobalStyle />
-        <Router>
-          <Header />
-          <Switch>
-            <Route path="/" exact>
-              <Home />
-            </Route>
-          </Switch>
-        </Router>
-      </ThemeProvider>
+      <Provider store={store()}>
+        <ThemeProvider theme={theme}>
+          <GlobalStyle />
+          <Router>
+            <Header />
+            <Switch>
+              <Route path="/" exact>
+                <Home />
+              </Route>
+            </Switch>
+          </Router>
+        </ThemeProvider>
+      </Provider>
     </div>
   );
 }

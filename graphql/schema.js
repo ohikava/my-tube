@@ -49,6 +49,7 @@ const schema = buildSchema(`
   type Query {
     getVideo(id: ID!): Video
     getUser(id: ID!): User
+    getVideos:  [Video]
   }
   `);
 

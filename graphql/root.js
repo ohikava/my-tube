@@ -6,6 +6,10 @@ const root = {
     const result = await Video.findById(id);
     return result;
   },
+  getVideos: async() => {
+    const result = await Video.find({});
+    return result;
+  },
   addVideo: async ({input}) => {
     try {
     const newVideo = new Video({...input})
