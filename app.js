@@ -1,4 +1,5 @@
 const express = require('express');
+const cors = require('cors');
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const {graphqlHTTP} = require('express-graphql');
@@ -21,9 +22,10 @@ const app = express();
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
+app.use(cors());
 app.use('/graphql', graphqlHTTP({
   graphiql: true,
   schema: schema,
   rootValue: root
-}))
+}));
 app.listen(5000);

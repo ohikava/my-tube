@@ -21,11 +21,15 @@ const schema = buildSchema(`
     email: String
     password: String
   }
+  type ShortUser {
+    name: String,
+    id: ID
+  }
   type Video {
     id: ID
     title: String
     duration: String
-    author: ID
+    author: ShortUser
     date: String
     views: Int
     comments: [ID]

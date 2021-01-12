@@ -7,8 +7,13 @@ const root = {
     return result;
   },
   getVideos: async() => {
-    const result = await Video.find({});
+    try {
+    let result = await Video.find({});
     return result;
+    return result;
+  } catch(err) {
+    console.error(err);
+  }
   },
   addVideo: async ({input}) => {
     try {

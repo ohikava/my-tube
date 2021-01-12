@@ -4,7 +4,10 @@ const Schema = mongoose.Schema;
 const videoSchema = new Schema({
   title: String,
   duration: String,
-  author: Schema.Types.ObjectID,
+  author: {
+    id: Schema.Types.ObjectID,
+    name: String
+  },
   date: String,
   views: {
     type: Number,

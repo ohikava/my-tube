@@ -62,19 +62,19 @@ const Column = styled.div`
   padding: 5px;
 `;
 
-const Thumbnail = ({ i: {img, icon, channel, title, views, date, duration}}) => (
+const Thumbnail = ({ i: {id, author, title, views, date, duration}}) => (
     <Wrapper>
       <ThumbContainer>
-        <Thumb src={`thumbnails/${img}`} />
+        <Thumb src={`thumbnails/${id}.webp`} />
         <Duration>{duration}</Duration>
       </ThumbContainer>
       <Column>
-        <Icon src={`users/${icon}`} />
+        <Icon src={`users/${author.id}.jpg`} />
       </Column>
       <Column>
         <Title>{title}</Title>
         <div>
-          <Channel>{channel}</Channel>
+          <Channel>{author.name}</Channel>
           <Views>{formatViews(views)}</Views>
           <Date>{formatDate(date)}</Date>
         </div>
