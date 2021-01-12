@@ -10,6 +10,7 @@ import Item from "./Item";
 import Navigation from "./Navigation";
 import Subscriptions from "./Subscriptions";
 import Playlists from "./Playlists";
+import Spoiler from "../utils/Spoiler";
 
 const Wrapper = styled.header`
   display: flex;
@@ -83,7 +84,7 @@ const navigation = [
 const Header = () => {
   const [isMobileMenuOpen, openMobileMenu] = useState(false);
   const [isOpenNotifications, openNotifications] = useState(false);
-
+  const [isOpenSettings, openSettings] = useState(false);
   return (
     <Wrapper>
       <Link to="/">
@@ -111,7 +112,9 @@ const Header = () => {
         <Playlists />
         <Item>Загрузить</Item>
         <Item>Аккаунт</Item>
-        <Item>Настройки</Item>
+        <Spoiler title="Настройки" open={isOpenSettings} height={50} cb={() => openSettings(!isOpenSettings)}>
+          <Item>Язык</Item>
+        </Spoiler>
       </MobileMenuContainer>
     </Wrapper>
   )
