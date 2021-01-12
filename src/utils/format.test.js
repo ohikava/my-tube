@@ -8,5 +8,5 @@ it("format Views should work right", () => {
 });
 
 it("format Date should work right", () => {
-  expect(formatDate("11.01.2020")).toBe("1 год");
+  expect(formatDate("01.11.2020")).toBe("1 год");
 })
