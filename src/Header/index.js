@@ -1,5 +1,6 @@
 import React,{useState} from 'react';
 import styled from 'styled-components';
+import { useTranslation } from "react-i18next";
 import Burger from "./Burger";
 import {Link} from "react-router-dom";
 import MobileMenuContainer from "./MobileMenuContainer";
@@ -88,11 +89,12 @@ const Header = () => {
   const [isOpenNotifications, openNotifications] = useState(false);
   const [isOpenSettings, openSettings] = useState(false);
   const [isOpenLanguages, openLanguages] = useState(false);
-
+  const {t, i18n} = useTranslation();
+  i18n.changeLanguage('fr');
   return (
     <Wrapper>
       <Link to="/">
-        <Logo>LETUBE</Logo>
+        <Logo>{t('Welcome to React')}</Logo>
       </Link>
       <HideFromMobile border={760}>
         <Search />
