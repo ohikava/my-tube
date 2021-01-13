@@ -1,7 +1,11 @@
-import React,{useState} from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import Item from "./Item";
+import {useTranslation} from "react-i18next";
+import {useDispatch, useSelector} from "react-redux";
+import {changeLanguage} from "../services/LanguageReducer/actions";
+import {LANGUAGES} from "../services/LanguageReducer/actionsTypes";
 
 const Wrapper = styled.div`
   display: ${props => props.open ? "flex" : "none"};
@@ -37,17 +41,19 @@ const CustomItem= styled(Item)`
 `;
 
 const Languages = ({open, close}) => {
-  const [lang, setLang] = useState(0);
+  const dispatch = useDispatch();
+  const language = useSelector(s => s.language.language);
+  const {i18n, t} = useTranslation();
   return (
     <Wrapper open={open}>
       <Row>
         <Title>
-          Языки
+          {t('Language')}
         </Title>
         <Close src="close.svg" onClick={close}/>
       </Row>
-      <CustomItem img="russia.svg" active={lang === 0} cb={() => setLang(0)}>Русский</CustomItem>
-      <CustomItem img="english.svg" active={lang === 1} cb={() => setLang(1)}>English</CustomItem>
+      <CustomItem img="russia.svg" active={language === LANGUAGES.RUS} cb={() => dispatch(changeLanguage(LANGUAGES.RUS))}>Русский</CustomItem>
+      <CustomItem img="english.svg" active={language === LANGUAGES.ENG} cb={() => dispatch(changeLanguage(LANGUAGES.ENG))}>English</CustomItem>
     </Wrapper>
   );
 };

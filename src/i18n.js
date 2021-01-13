@@ -1,14 +1,14 @@
 import i18n from "i18next";
 import { initReactI18next} from "react-i18next";
-import en from "./translation/en.json";
-import fr from "./translation/fr.json";
+import eng from "./translation/eng.json";
+import rus from "./translation/rus.json";
 
 const resources = {
-  en: {
-    translation: en
-  },
-    fr: {
-      translation: fr
+  eng: {
+    translation: eng
+    },
+    rus: {
+      translation: rus
     }
 };
 
@@ -16,7 +16,7 @@ i18n
   .use(initReactI18next)
   .init({
     resources,
-    lng: "en",
+    lng: "eng",
     keySeparator: false,
     intrpolation: {
       escapeValue: false

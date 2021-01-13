@@ -9,7 +9,7 @@ const Wrapper = styled.div`
   position: fixed;
   top: 50px;
   right: 15px;
-  width: 100px;
+  width: 120px;
   background: #fff;
   padding: 10px 15px 10px 15px;
   box-shadow: 0px 0px 5px #000;

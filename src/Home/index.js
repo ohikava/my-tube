@@ -6,6 +6,7 @@ import Item from "../Header/Item";
 import Subscriptions from "../Header/Subscriptions";
 import Playlists from "../Header/Playlists";
 import Videos from "./Videos";
+import {useTranslation} from "react-i18next";
 
 const Wrapper = styled.div`
   padding: 100px 0 0 0;
@@ -20,49 +21,49 @@ const Wrapper = styled.div`
 const NavigationPanel = styled.div`
   display: flex;
   flex-direction: column;
+  width: 15%;
   gap: 30px;
 `;
 
 const navigation = [
   {
-    body: "Главная",
+    body: "Main",
     link: ""
   },
   {
-    body: "В тренде",
+    body: "Followings",
     link: ""
   },
   {
-    body: "Подписки",
+    body: "My Video",
     link: ""
   },
   {
-    body: "Ваши видео",
+    body: "Watch Later",
     link: ""
   },
   {
-    body: "Смотреть позже",
-    link: ""
-  },
-  {
-    body: "Понравившиеся",
+    body: "Favourite",
     link: ""
   }
 ];
 
-const Home = () => (
-  <Wrapper>
-    <HideFromMobile border={426}>
-      <NavigationPanel>
-        <Navigation>
-          {navigation.map(i => <Item>{i.body}</Item>)}
-        </Navigation>
-        <Subscriptions />
-        <Playlists />
-      </NavigationPanel>
-    </HideFromMobile>
-    <Videos />
-  </Wrapper>
-);
+const Home = () => {
+  const {i18n, t} = useTranslation();
+  return (
+    <Wrapper>
+      <HideFromMobile border={426}>
+        <NavigationPanel>
+          <Navigation>
+            {navigation.map(i => <Item>{t(`${i.body}`)}</Item>)}
+          </Navigation>
+          <Subscriptions />
+          <Playlists />
+        </NavigationPanel>
+      </HideFromMobile>
+      <Videos />
+    </Wrapper>
+  );
+}
 
 export default Home;

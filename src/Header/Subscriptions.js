@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import Item from "./NotificationItem";
+import {useTranslation} from "react-i18next";
 
 const Wrapper = styled.div`
   display: flex;
@@ -42,13 +43,14 @@ const More = styled.span`
 `;
 
 const Subscriptions = () => {
+  const {i18n, t} = useTranslation();
   return (
     <Wrapper>
-    <Title>Мои подписки</Title>
+    <Title>{t('My Followings')}</Title>
       {
         subscriptions.map((i, index) => <Item i={i} />)
       }
-      <More>Показать больше</More>
+      <More>{t('More')}</More>
     </Wrapper>
   )
 };

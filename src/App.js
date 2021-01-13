@@ -1,8 +1,10 @@
-import React from 'react';
+import React,{useEffect} from 'react';
 import Header from "./Header";
 import {ThemeProvider,createGlobalStyle} from "styled-components";
 import Home from "./Home";
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
+import {useTranslation} from "react-i18next";
+import {useSelector} from "react-redux";
 import {Provider} from "react-redux";
 import store from "./services";
 
@@ -32,21 +34,32 @@ const GlobalStyle = createGlobalStyle`
     text-decoration: none;
   }
 `;
+//this component help us to relate i18n and redux
+const TranslationProvider = ({children}) => {
+  const language = useSelector(s => s.language.language);
+  const {i18n, t} = useTranslation();
+  useEffect(() => {
+    i18n.changeLanguage(language);
+  }, [language])
+  return <>{children}</>
+};
 
 function App() {
   return (
     <div className="App">
       <Provider store={store()}>
         <ThemeProvider theme={theme}>
-          <GlobalStyle />
-          <Router>
-            <Header />
-            <Switch>
-              <Route path="/" exact>
-                <Home />
-              </Route>
-            </Switch>
-          </Router>
+          <TranslationProvider>
+            <GlobalStyle />
+            <Router>
+              <Header />
+              <Switch>
+                <Route path="/" exact>
+                  <Home />
+                </Route>
+              </Switch>
+            </Router>
+          </TranslationProvider>
         </ThemeProvider>
       </Provider>
     </div>

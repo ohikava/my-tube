@@ -59,27 +59,23 @@ const Title = styled.span`
 
 const navigation = [
   {
-    body: "Главная",
+    body: "Main",
     link: ""
   },
   {
-    body: "В тренде",
+    body: "Followings",
     link: ""
   },
   {
-    body: "Подписки",
+    body: "My Video",
     link: ""
   },
   {
-    body: "Ваши видео",
+    body: "Watch Later",
     link: ""
   },
   {
-    body: "Смотреть позже",
-    link: ""
-  },
-  {
-    body: "Понравившиеся",
+    body: "Favourite",
     link: ""
   }
 ];
@@ -90,11 +86,10 @@ const Header = () => {
   const [isOpenSettings, openSettings] = useState(false);
   const [isOpenLanguages, openLanguages] = useState(false);
   const {t, i18n} = useTranslation();
-  i18n.changeLanguage('fr');
   return (
     <Wrapper>
       <Link to="/">
-        <Logo>{t('Welcome to React')}</Logo>
+        <Logo>LeTube</Logo>
       </Link>
       <HideFromMobile border={760}>
         <Search />
@@ -105,7 +100,7 @@ const Header = () => {
         <Icon src="user-profile.svg" />
         <Icon src="settings.svg" onMouseOver={() => openSettings(true)} onMouseOut={() => openSettings(false)}/>
         <Settings open={isOpenSettings} cbover={() => openSettings(true)} cbout={() => openSettings(false)}>
-          <Item cb={() => openLanguages(true)}>Язык</Item>
+          <Item cb={() => openLanguages(true)}>{t('Language')}</Item>
         </Settings>
         </div>
       </HideFromMobile>
@@ -113,17 +108,17 @@ const Header = () => {
       <Languages open={isOpenLanguages} close={() => openLanguages(false)}/>
       <MobileMenuContainer isOpen={isMobileMenuOpen}>
         <Search />
-        <Title>Уведомления</Title>
+        <Title>{t('Notifications')}</Title>
         <Notifications/>
         <Navigation>
-          {navigation.map(i => <Item>{i.body}</Item>)}
+          {navigation.map(i => <Item>{t(`${i.body}`)}</Item>)}
         </Navigation>
         <Subscriptions />
         <Playlists />
-        <Item>Загрузить</Item>
-        <Item>Аккаунт</Item>
-        <Spoiler title="Настройки" open={isOpenSettings} height={50} cb={() => openSettings(!isOpenSettings)}>
-          <Item cb={() => openLanguages(true)}>Язык</Item>
+        <Item>{t('Upload')}</Item>
+        <Item>{t('Account')}</Item>
+        <Spoiler title={t('Settings')} open={isOpenSettings} height={50} cb={() => openSettings(!isOpenSettings)}>
+          <Item cb={() => openLanguages(true)}>{t('Language')}</Item>
         </Spoiler>
       </MobileMenuContainer>
     </Wrapper>

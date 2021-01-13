@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import Item from "./Item";
+import {useTranslation} from "react-i18next";
 
 const Wrapper = styled.div`
   display: flex;
@@ -37,13 +38,14 @@ const More = styled.span`
 `;
 
 const Playlists = () => {
+  const {i18n, t} = useTranslation();
   return (
     <Wrapper>
-    <Title>Мои Плейлисты</Title>
+    <Title>{t('My Playlists')}</Title>
       {
         data.map(i => <Item img="playlist.svg">{i.body}</Item>)
       }
-    <More>Показать больше</More>
+    <More>{t('More')}</More>
     </Wrapper>
   )
 };

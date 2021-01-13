@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import {useTranslation} from "react-i18next";
 
 const Wrapper = styled.div`
   display: flex;
@@ -29,9 +30,10 @@ const Button = styled.img`
 `;
 
 const Search = () => {
+  const {i18n, t} = useTranslation();
   return (
     <Wrapper>
-      <Input placeholder="Введите запрос  " />
+      <Input placeholder={t('Type')} />
       <Button src="loupe.svg"/>
     </Wrapper>
   )
