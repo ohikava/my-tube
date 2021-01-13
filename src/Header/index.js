@@ -13,11 +13,12 @@ import Subscriptions from "./Subscriptions";
 import Playlists from "./Playlists";
 import Spoiler from "../utils/Spoiler";
 import Languages from "./Languages";
-import Settings from "./Settings";
+import DropDownMenu from "./DropDownMenu";
 
 const Wrapper = styled.header`
   display: flex;
   justify-content: space-between;
+  position: relative;
   padding: 15px 15px;
   z-index: 5;
   @media(min-width: 768px) {
@@ -39,17 +40,25 @@ const Logo = styled.div`
 `;
 
 const Icon = styled.img`
-  margin: 0 5px;
+  padding: 0 5px;
   cursor: pointer;
   opacity: .7;
-  width: 1.7rem;
+  width: 1.9rem;
   @media(min-width: 1024px) {
-    width: 1.9rem;
+    width: 2rem;
   }
-  &:last-child {
+`;
+
+const IconWrapper = styled.div`
+  position: relative;
+  &:hover > img {
     opacity: .8;
     filter: ${props => props.theme.activecoldfilter};
   }
+`;
+
+const Icons = styled.div`
+  display: flex;
 `;
 
 const Title = styled.span`
@@ -85,6 +94,7 @@ const Header = () => {
   const [isOpenNotifications, openNotifications] = useState(false);
   const [isOpenSettings, openSettings] = useState(false);
   const [isOpenLanguages, openLanguages] = useState(false);
+  const [isOpenAccount, openAccount] = useState(false);
   const {t, i18n} = useTranslation();
   return (
     <Wrapper>
@@ -93,16 +103,26 @@ const Header = () => {
       </Link>
       <HideFromMobile border={760}>
         <Search />
-        <div>
-        <Icon src="create-video.svg" />
-        <Icon src="bell.svg" onClick={() => openNotifications(!isOpenNotifications)}/>
-        <Notifications isOpenNotifications={isOpenNotifications}/>
-        <Icon src="user-profile.svg" />
-        <Icon src="settings.svg" onMouseOver={() => openSettings(true)} onMouseOut={() => openSettings(false)}/>
-        <Settings open={isOpenSettings} cbover={() => openSettings(true)} cbout={() => openSettings(false)}>
-          <Item cb={() => openLanguages(true)}>{t('Language')}</Item>
-        </Settings>
-        </div>
+        <Icons>
+          <Icon src="create-video.svg" />
+          <IconWrapper onMouseOver={() => openNotifications(true)} onMouseOut={() => openNotifications(false)}>
+            <Icon src="bell.svg" />
+            <Notifications isOpenNotifications={isOpenNotifications}/>
+          </IconWrapper>
+          <IconWrapper onMouseOver={() => openAccount(true)} onMouseOut={() => openAccount(false)}>
+            <Icon src="user-profile.svg" />
+            <DropDownMenu open={isOpenAccount}>
+              <Item>{t('Registration')}</Item>
+              <Item>{t('Login')}</Item>
+            </DropDownMenu>
+          </IconWrapper>
+          <IconWrapper onMouseOver={() => openSettings(true)} onMouseOut={() => openSettings(false)}>
+            <Icon src="settings.svg" />
+            <DropDownMenu open={isOpenSettings}>
+              <Item cb={() => openLanguages(true)}>{t('Language')}</Item>
+            </DropDownMenu>
+          </IconWrapper>
+        </Icons>
       </HideFromMobile>
       <Burger cb={() => openMobileMenu(!isMobileMenuOpen)} />
       <Languages open={isOpenLanguages} close={() => openLanguages(false)}/>
@@ -116,8 +136,11 @@ const Header = () => {
         <Subscriptions />
         <Playlists />
         <Item>{t('Upload')}</Item>
-        <Item>{t('Account')}</Item>
-        <Spoiler title={t('Settings')} open={isOpenSettings} height={50} cb={() => openSettings(!isOpenSettings)}>
+        <Spoiler title={t('Account')} open={isOpenAccount} height={70} cb={() => openAccount(!isOpenAccount)}>
+          <Item>{t('Registration')}</Item>
+          <Item>{t('Login')}</Item>
+        </Spoiler>
+        <Spoiler title={t('Settings')} open={isOpenSettings} height={40} cb={() => openSettings(!isOpenSettings)}>
           <Item cb={() => openLanguages(true)}>{t('Language')}</Item>
         </Spoiler>
       </MobileMenuContainer>

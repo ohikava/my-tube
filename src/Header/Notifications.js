@@ -26,13 +26,22 @@ const Wrapper = styled.div`
   flex-direction: column;
   gap: 5px;
   @media(min-width: 768px) {
-    display: ${props => props.isOpenNotifications ? "flex" : "none"};
-    position: fixed;
-    background: white;
-    border: 1px solid rgb(238, 238, 238);
-    padding: 10px;
-    right: 15px;
-    top: 70px;
+    display: ${props => props.open ? "flex" : "none"};
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    z-index: 2;
+    right: 0;
+    width: 300px;
+    background: #fff;
+    padding: 10px 15px 10px 15px;
+    box-shadow: 0px 0px 5px #000;
+    div {
+      font-size: 1.1rem;
+      &:hover {
+        color: ${props => props.theme.activecold};
+      }
+    }
   }
 `;
 
@@ -51,7 +60,7 @@ const Notifications = ({isOpenNotifications}) => {
   };
 
   return (
-    <Wrapper isOpenNotifications={isOpenNotifications} data-testid={'notifications'}>
+    <Wrapper open={isOpenNotifications} data-testid={'notifications'}>
       {
         data.map(i => <Item key={i.id} i={i} />)
       }

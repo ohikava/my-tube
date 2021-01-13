@@ -6,29 +6,34 @@ import Item from "./Item";
 const Wrapper = styled.div`
   display: ${props => props.open ? "flex" : "none"};
   flex-direction: column;
-  position: fixed;
-  top: 50px;
-  right: 15px;
-  width: 120px;
+  position: absolute;
+  top: 100%;
+  z-index: 2;
+  right: 0;
+  width: 130px;
   background: #fff;
   padding: 10px 15px 10px 15px;
   box-shadow: 0px 0px 5px #000;
+  div {
+    font-size: 1.1rem;
+    &:hover {
+      color: ${props => props.theme.activecold};
+    }
+  }
 
 `;
 
-const Settings = ({children, cbover,cbout, open}) => (
-  <Wrapper open={open} onMouseOver={cbover} onMouseOut={cbout}>
+const DropDownMenu = ({children, open}) => (
+  <Wrapper open={open} data-testid="dropdownmenu">
     {
       children
     }
   </Wrapper>
 );
 
-Settings.propTypes = {
+DropDownMenu.propTypes = {
   children: PropTypes.node,
   open: PropTypes.bool.isRequired,
-  cbover: PropTypes.func,
-  cbout: PropTypes.func
 };
 
-export default Settings;
+export default DropDownMenu;

@@ -21,8 +21,11 @@ const Wrapper = styled.div`
 const NavigationPanel = styled.div`
   display: flex;
   flex-direction: column;
-  width: 15%;
+  width: 25%;
   gap: 30px;
+  @media(min-width: 1024px) {
+    width: 15%;
+  }
 `;
 
 const navigation = [
