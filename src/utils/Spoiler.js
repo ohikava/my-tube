@@ -17,6 +17,11 @@ const Title = styled.div`
 const Arrow = styled.img`
   width: 1rem;
   transform: rotate(0);
+  transition: 1s;
+  ${props => props.open && css`
+    transform: rotate(180deg);
+    filter: ${props => props.theme.activecoldfilter};
+    `}
 `;
 const Body = styled.div`
   display: flex;

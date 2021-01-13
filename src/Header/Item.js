@@ -14,8 +14,8 @@ const Image = styled.img`
   width: 1.3rem;
 `;
 
-const Item = ({children, img}) => (
-  <Wrapper>
+const Item = ({children, className, cb, img}) => (
+  <Wrapper onClick={cb} className={className}>
   {img && <Image src={img} />}
     {children}
   </Wrapper>

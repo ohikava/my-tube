@@ -11,6 +11,8 @@ import Navigation from "./Navigation";
 import Subscriptions from "./Subscriptions";
 import Playlists from "./Playlists";
 import Spoiler from "../utils/Spoiler";
+import Languages from "./Languages";
+import Settings from "./Settings";
 
 const Wrapper = styled.header`
   display: flex;
@@ -85,6 +87,8 @@ const Header = () => {
   const [isMobileMenuOpen, openMobileMenu] = useState(false);
   const [isOpenNotifications, openNotifications] = useState(false);
   const [isOpenSettings, openSettings] = useState(false);
+  const [isOpenLanguages, openLanguages] = useState(false);
+
   return (
     <Wrapper>
       <Link to="/">
@@ -97,10 +101,14 @@ const Header = () => {
         <Icon src="bell.svg" onClick={() => openNotifications(!isOpenNotifications)}/>
         <Notifications isOpenNotifications={isOpenNotifications}/>
         <Icon src="user-profile.svg" />
-        <Icon src="settings.svg" />
+        <Icon src="settings.svg" onMouseOver={() => openSettings(true)} onMouseOut={() => openSettings(false)}/>
+        <Settings open={isOpenSettings} cbover={() => openSettings(true)} cbout={() => openSettings(false)}>
+          <Item cb={() => openLanguages(true)}>Язык</Item>
+        </Settings>
         </div>
       </HideFromMobile>
       <Burger cb={() => openMobileMenu(!isMobileMenuOpen)} />
+      <Languages open={isOpenLanguages} close={() => openLanguages(false)}/>
       <MobileMenuContainer isOpen={isMobileMenuOpen}>
         <Search />
         <Title>Уведомления</Title>
@@ -113,7 +121,7 @@ const Header = () => {
         <Item>Загрузить</Item>
         <Item>Аккаунт</Item>
         <Spoiler title="Настройки" open={isOpenSettings} height={50} cb={() => openSettings(!isOpenSettings)}>
-          <Item>Язык</Item>
+          <Item cb={() => openLanguages(true)}>Язык</Item>
         </Spoiler>
       </MobileMenuContainer>
     </Wrapper>
