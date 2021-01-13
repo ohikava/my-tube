@@ -65,7 +65,7 @@ const Column = styled.div`
 const Thumbnail = ({ i: {id, author, title, views, date, duration}}) => (
     <Wrapper>
       <ThumbContainer>
-        <Thumb src={`thumbnails/${id}.webp`} />
+        <Thumb src={`thumbnails/${id}.jpg`} />
         <Duration>{duration}</Duration>
       </ThumbContainer>
       <Column>
