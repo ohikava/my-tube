@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import PropTypes from "prop-types";
 import {formatViews, formatDate} from "../utils/format";
+import {useTranslation} from "react-i18next";
 
 const Wrapper = styled.div`
   display: grid;
@@ -36,6 +37,7 @@ const Views = styled.span`
 const Date = styled.span`
   font-size: 0.8rem;
   opacity: .6;
+  text-transform: lowercase;
 `;
 const Duration = styled.span`
   position: absolute;
@@ -62,25 +64,29 @@ const Column = styled.div`
   padding: 5px;
 `;
 
-const Thumbnail = ({ i: {id, author, title, views, date, duration}}) => (
-    <Wrapper>
-      <ThumbContainer>
-        <Thumb src={`thumbnails/${id}.jpg`} />
-        <Duration>{duration}</Duration>
-      </ThumbContainer>
-      <Column>
-        <Icon src={`users/${author.id}.jpg`} />
-      </Column>
-      <Column>
-        <Title>{title}</Title>
-        <div>
-          <Channel>{author.name}</Channel>
-          <Views>{formatViews(views)}</Views>
-          <Date>{formatDate(date)}</Date>
-        </div>
-      </Column>
-    </Wrapper>
-);
+const Thumbnail = ({ i: {id, author, title, views, date, duration}}) => {
+  const {i18n, t} = useTranslation();
+  const {result: relativeDate, unit} = formatDate(date);
+  return (
+      <Wrapper>
+        <ThumbContainer>
+          <Thumb src={`thumbnails/${id}.jpg`} />
+          <Duration>{duration}</Duration>
+        </ThumbContainer>
+        <Column>
+          <Icon src={`users/${author.id}.jpg`} />
+        </Column>
+        <Column>
+          <Title>{title}</Title>
+          <div>
+            <Channel>{author.name}</Channel>
+            <Views>{formatViews(views)}</Views>
+            <Date>{relativeDate}{t(unit)}{t("Ago")}</Date>
+          </div>
+        </Column>
+      </Wrapper>
+  );
+};
 
 Thumbnail.propTypes = {
   i: PropTypes.exact({

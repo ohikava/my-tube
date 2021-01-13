@@ -14,5 +14,17 @@
     "Type": "Type Something",
     "Language": "Language",
     "Registration": "Registration",
-    "Login": "Login"
+    "Login": " Login",
+    "Year1": " Year",
+    "Year2": " Year",
+    "Year3": " Year",
+    "Month1": " Month",
+    "Month2": " Month",
+    "Month3": " Month",
+    "Week1": " Week",
+    "Week2": " Week",
+    "Day1": " Day",
+    "Day2": " Day",
+    "Day3": " Day",
+    "Ago": " Ago"
 }
