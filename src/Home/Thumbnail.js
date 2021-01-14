@@ -5,34 +5,37 @@ import {formatViews, formatDate} from "../utils/format";
 import {useTranslation} from "react-i18next";
 
 const Wrapper = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 6fr;
-  gap: 5px;
+  display: flex;
+  flex-direction: column;
   cursor: pointer;
-  padding-bottom: 25px;
-  @media(min-width: 768px) {
-    padding: 0;
-  }
+  gap: 10px;
 `;
 const Thumb = styled.img`
-  max-width: 100%;
   width: 100%;
+  max-width: 100%;
 `;
 const Icon = styled.img`
   width: 2.4rem;
+  height: 2.4rem;
   border-radius: 50%;
 `;
 const Title = styled.span`
   font-size: 1rem;
-  display: block;
+  height: 40px;
+  @media(min-width: 375px) {
+    height: 35px;
+  }
+  @media(min-width: 425px) {
+    height: 30px;
+  }
   @media(min-width: 768px) {
-    height: 70px;
+    height: 45px;
   }
 `;
 const Views = styled.span`
   font-size: .8rem;
     opacity: .6;
-  padding-right: 5px;
+    padding: 0 10px;
 `;
 const Date = styled.span`
   font-size: 0.8rem;
@@ -40,28 +43,37 @@ const Date = styled.span`
   text-transform: lowercase;
 `;
 const Duration = styled.span`
-  position: absolute;
-  bottom: 5px;
-  right: 5px;
   padding: 2px 5px;
   background: #000;
   color: #fff;
   font-size: .8rem;
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  @media(min-width: 768px) {
+    right: 6px;
+    bottom: 6px;
+  }
 `;
 const Channel = styled.span`
   font-size: .8rem;
   color: ${props => props.theme.activecold};
-  padding-right: 10px;
 `;
 
 const ThumbContainer = styled.div`
   position: relative;
   z-index: 2;
-  grid-column-start: 1;
-  grid-column-end: 3;
 `;
+
+const Row = styled.div`
+  display: flex;
+  gap: 10px;
+`;
+
 const Column = styled.div`
-  padding: 5px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
 `;
 
 const Thumbnail = ({ i: {id, author, title, views, date, duration}}) => {
@@ -73,17 +85,17 @@ const Thumbnail = ({ i: {id, author, title, views, date, duration}}) => {
           <Thumb src={`thumbnails/${id}.jpg`} />
           <Duration>{duration}</Duration>
         </ThumbContainer>
-        <Column>
+        <Row>
           <Icon src={`users/${author.id}.jpg`} />
-        </Column>
-        <Column>
-          <Title>{title}</Title>
-          <div>
-            <Channel>{author.name}</Channel>
-            <Views>{formatViews(views)}</Views>
-            <Date>{relativeDate}{t(unit)}{t("Ago")}</Date>
-          </div>
-        </Column>
+          <Column>
+            <Title>{title}</Title>
+            <div>
+              <Channel>{author.name}</Channel>
+              <Views>{formatViews(views)}</Views>
+              <Date>{relativeDate}{t(unit)}{t("Ago")}</Date>
+            </div>
+          </Column>
+          </Row>
       </Wrapper>
   );
 };

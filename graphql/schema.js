@@ -25,6 +25,10 @@ const schema = buildSchema(`
     name: String,
     id: ID
   }
+  input ShortUserInput {
+    name: String,
+    id: ID
+  }
   type Video {
     id: ID
     title: String
@@ -39,7 +43,7 @@ const schema = buildSchema(`
   input VideoInput {
     title: String
     duration: String
-    author: ID
+    author: ShortUserInput
     date: String
     views: Int
     comments: [ID]

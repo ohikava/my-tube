@@ -8,6 +8,7 @@ import {getVideos} from "../services/VideoReducer/actions";
 const Wrapper = styled.div`
   display: grid;
   width: 100%;
+  gap: 15px;
   @media(min-width: 768px) {
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     grid-gap: 25px 5px;
