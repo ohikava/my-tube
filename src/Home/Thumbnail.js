@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import PropTypes from "prop-types";
 import {formatViews, formatDate} from "../utils/format";
 import {useTranslation} from "react-i18next";
+import {Link} from "react-router-dom";
 
 const Wrapper = styled.div`
   display: flex;
@@ -81,6 +82,7 @@ const Thumbnail = ({ i: {id, author, title, views, date, duration}}) => {
   const {result: relativeDate, unit} = formatDate(date);
   return (
       <Wrapper>
+        <Link to={`/video/${id}`} >
         <ThumbContainer>
           <Thumb src={`thumbnails/${id}.jpg`} />
           <Duration>{duration}</Duration>
@@ -91,11 +93,12 @@ const Thumbnail = ({ i: {id, author, title, views, date, duration}}) => {
             <Title>{title}</Title>
             <div>
               <Channel>{author.name}</Channel>
-              <Views>{formatViews(views)}</Views>
+              <Views>{views} {t('Views')}</Views>
               <Date>{relativeDate}{t(unit)}{t("Ago")}</Date>
             </div>
           </Column>
           </Row>
+          </Link>
       </Wrapper>
   );
 };
@@ -108,7 +111,12 @@ Thumbnail.propTypes = {
     views: PropTypes.string.isRequired,
     date: PropTypes.number.isRequired,
     duration: PropTypes.string.isRequired,
-    channel: PropTypes.string.isRequired
+    channel: PropTypes.string.isRequired,
+    id: PropTypes.string.isRequired,
+    author: PropTypes.exact({
+      id: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired
+    })
   })
 };
 

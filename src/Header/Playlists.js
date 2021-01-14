@@ -43,7 +43,7 @@ const Playlists = () => {
     <Wrapper>
     <Title>{t('My Playlists')}</Title>
       {
-        data.map(i => <Item img="playlist.svg">{i.body}</Item>)
+        data.map(i => <Item img="/playlist.svg">{i.body}</Item>)
       }
     <More>{t('More')}</More>
     </Wrapper>

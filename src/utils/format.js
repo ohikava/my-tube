@@ -2,17 +2,23 @@
 
 module.exports = {
   formatViews: (init) => {
-    let result;
+    let result, unit;
     if (init >= 1000000) {
       result = init / 1000000;
-      result = result + " млн";
+      result = result.toFixed(1);
+      result = result + "";
+      unit = "Million";
     } else if (init >= 1000){
       result = init / 1000;
-      result = result + " тыс";
+      result = result.toFixed(1);
+      result = result + "";
+      unit = "Thousand";
     } else {
-      result = init + "";
+      result = init;
+      result = result + "";
+      unit = null;
     }
-    return result;
+    return {result, unit};
   },
   formatDate: (init) => {
     let result, unit, compare;

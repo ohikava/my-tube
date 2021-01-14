@@ -20,8 +20,8 @@ const Languages = ({open, close}) => {
   const {i18n, t} = useTranslation();
   return (
     <ModalWindow open={open} close={close} title="Language">
-      <CustomItem img="russia.svg" active={language === LANGUAGES.RUS} cb={() => dispatch(changeLanguage(LANGUAGES.RUS))}>Русский</CustomItem>
-      <CustomItem img="english.svg" active={language === LANGUAGES.ENG} cb={() => dispatch(changeLanguage(LANGUAGES.ENG))}>English</CustomItem>
+      <CustomItem img="/russia.svg" active={language === LANGUAGES.RUS} cb={() => dispatch(changeLanguage(LANGUAGES.RUS))}>Русский</CustomItem>
+      <CustomItem img="/english.svg" active={language === LANGUAGES.ENG} cb={() => dispatch(changeLanguage(LANGUAGES.ENG))}>English</CustomItem>
     </ModalWindow>
   );
 };

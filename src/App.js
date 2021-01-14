@@ -2,6 +2,7 @@ import React from 'react';
 import Header from "./Header";
 import {createGlobalStyle} from "styled-components";
 import Home from "./Home";
+import Video from "./Video";
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import {Provider} from "react-redux";
 import {PersistGate} from "redux-persist/integration/react";
@@ -24,6 +25,7 @@ const GlobalStyle = createGlobalStyle`
   }
   a {
     text-decoration: none;
+    color: #000;
   }
 `;
 //this component help us to relate i18n and redux
@@ -43,6 +45,9 @@ function App() {
                 <Switch>
                   <Route path="/" exact>
                     <Home />
+                  </Route>
+                  <Route path="/video/:id">
+                    <Video />
                   </Route>
                 </Switch>
               </Router>

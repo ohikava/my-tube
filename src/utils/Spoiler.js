@@ -41,7 +41,7 @@ const Spoiler = ({children, open, cb, title, height=150}) => (
   <Wrapper>
     <Head onClick={cb}>
       <Title>{title}</Title>
-      <Arrow src="arrow-down.svg" open={open}/>
+      <Arrow src="/arrow-down.svg" open={open}/>
     </Head>
     <Body height={height} open={open}>
     {children}

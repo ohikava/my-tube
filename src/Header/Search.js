@@ -20,7 +20,13 @@ const Input = styled.input`
   font-family: inherit;
   font-size: 1.3rem;
   //outline-color: ${props => props.theme.activecold};
-  width: 82%;
+  width: 85%;
+  @media(min-width: 375px) {
+    width: 86%;
+  }
+  @media(min-width: 425px) {
+    width: 90%;
+  }
   @media(min-width: 760px) {
     width: 93%;
   }
@@ -34,7 +40,7 @@ const Search = () => {
   return (
     <Wrapper>
       <Input placeholder={t('Type')} />
-      <Button src="loupe.svg"/>
+      <Button src="/loupe.svg"/>
     </Wrapper>
   )
 };

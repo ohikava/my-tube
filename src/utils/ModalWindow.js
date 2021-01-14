@@ -42,7 +42,7 @@ const ModalWindow = ({children, title, close, open}) => {
       <Title>
         {t(title)}
       </Title>
-      <Close src="close.svg" onClick={close}/>
+      <Close src="/close.svg" onClick={close}/>
     </Row>
       {children}
     </Wrapper>

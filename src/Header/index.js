@@ -107,20 +107,20 @@ const Header = () => {
       <HideFromMobile border={760}>
         <Search />
         <Icons>
-          <Icon src="create-video.svg" />
+          <Icon src="/create-video.svg" />
           <IconWrapper onMouseOver={() => openNotifications(true)} onMouseOut={() => openNotifications(false)}>
-            <Icon src="bell.svg" />
+            <Icon src="/bell.svg" />
             <Notifications isOpenNotifications={isOpenNotifications}/>
           </IconWrapper>
           <IconWrapper onMouseOver={() => openAccount(true)} onMouseOut={() => openAccount(false)}>
-            <Icon src="user-profile.svg" />
+            <Icon src="/user-profile.svg" />
             <DropDownMenu open={isOpenAccount}>
               <Item>{t('Registration')}</Item>
               <Item>{t('Login')}</Item>
             </DropDownMenu>
           </IconWrapper>
           <IconWrapper onMouseOver={() => openSettings(true)} onMouseOut={() => openSettings(false)}>
-            <Icon src="settings.svg" />
+            <Icon src="/settings.svg" />
             <DropDownMenu open={isOpenSettings}>
               <Item cb={() => openLanguages(true)}>{t('Language')}</Item>
               <Item cb={() => openTheme(true)}>{t("Theme")}</Item>
