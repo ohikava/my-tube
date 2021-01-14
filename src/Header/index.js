@@ -14,6 +14,7 @@ import Playlists from "./Playlists";
 import Spoiler from "../utils/Spoiler";
 import Languages from "./Languages";
 import DropDownMenu from "./DropDownMenu";
+import Themes from "./Themes";
 
 const Wrapper = styled.header`
   display: flex;
@@ -95,7 +96,9 @@ const Header = () => {
   const [isOpenSettings, openSettings] = useState(false);
   const [isOpenLanguages, openLanguages] = useState(false);
   const [isOpenAccount, openAccount] = useState(false);
+  const [isOpenTheme, openTheme] = useState(false);
   const {t, i18n} = useTranslation();
+
   return (
     <Wrapper>
       <Link to="/">
@@ -120,12 +123,14 @@ const Header = () => {
             <Icon src="settings.svg" />
             <DropDownMenu open={isOpenSettings}>
               <Item cb={() => openLanguages(true)}>{t('Language')}</Item>
+              <Item cb={() => openTheme(true)}>{t("Theme")}</Item>
             </DropDownMenu>
           </IconWrapper>
         </Icons>
       </HideFromMobile>
       <Burger cb={() => openMobileMenu(!isMobileMenuOpen)} />
       <Languages open={isOpenLanguages} close={() => openLanguages(false)}/>
+      <Themes open={isOpenTheme} close={() => openTheme(false)} />
       <MobileMenuContainer isOpen={isMobileMenuOpen}>
         <Search />
         <Title>{t('Notifications')}</Title>
@@ -140,8 +145,9 @@ const Header = () => {
           <Item>{t('Registration')}</Item>
           <Item>{t('Login')}</Item>
         </Spoiler>
-        <Spoiler title={t('Settings')} open={isOpenSettings} height={40} cb={() => openSettings(!isOpenSettings)}>
+        <Spoiler title={t('Settings')} open={isOpenSettings} height={70} cb={() => openSettings(!isOpenSettings)}>
           <Item cb={() => openLanguages(true)}>{t('Language')}</Item>
+          <Item cb={() => openTheme(true)}>{t('Theme')}</Item>
         </Spoiler>
       </MobileMenuContainer>
     </Wrapper>

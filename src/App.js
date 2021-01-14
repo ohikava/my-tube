@@ -1,21 +1,13 @@
-import React,{useEffect} from 'react';
+import React from 'react';
 import Header from "./Header";
-import {ThemeProvider,createGlobalStyle} from "styled-components";
+import {createGlobalStyle} from "styled-components";
 import Home from "./Home";
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
-import {useTranslation} from "react-i18next";
-import {useSelector} from "react-redux";
 import {Provider} from "react-redux";
-import store from "./services";
-
-const theme = {
-  maincolor: '#b0e2a7',
-  extrcolor: '#d4f5c5',
-  fontcolor: '#000',
-  activecold: '#2b5eff',
-  activecoldfilter: "invert(27%) sepia(48%) saturate(2739%) hue-rotate(214deg) brightness(115%) contrast(115%)",
-  fontfamily: 'Source Sans Pro'
-};
+import {PersistGate} from "redux-persist/integration/react";
+import configureStore from "./services";
+import ThemesProvider from "./ThemesProvider";
+import TranslationProvider from "./TranslationProvider";
 
 const GlobalStyle = createGlobalStyle`
   @import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap');
@@ -35,32 +27,28 @@ const GlobalStyle = createGlobalStyle`
   }
 `;
 //this component help us to relate i18n and redux
-const TranslationProvider = ({children}) => {
-  const language = useSelector(s => s.language.language);
-  const {i18n, t} = useTranslation();
-  useEffect(() => {
-    i18n.changeLanguage(language);
-  }, [language])
-  return <>{children}</>
-};
 
 function App() {
+  const {store, persistor} = configureStore();
+
   return (
     <div className="App">
-      <Provider store={store()}>
-        <ThemeProvider theme={theme}>
-          <TranslationProvider>
-            <GlobalStyle />
-            <Router>
-              <Header />
-              <Switch>
-                <Route path="/" exact>
-                  <Home />
-                </Route>
-              </Switch>
-            </Router>
-          </TranslationProvider>
-        </ThemeProvider>
+      <Provider store={store}>
+        <PersistGate loading={null} persistor={persistor}>
+          <ThemesProvider>
+            <TranslationProvider>
+              <GlobalStyle />
+              <Router>
+                <Header />
+                <Switch>
+                  <Route path="/" exact>
+                    <Home />
+                  </Route>
+                </Switch>
+              </Router>
+            </TranslationProvider>
+          </ThemesProvider>
+        </PersistGate>
       </Provider>
     </div>
   );
