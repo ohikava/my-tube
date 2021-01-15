@@ -1,7 +1,8 @@
-import {GET_VIDEOS} from "./actionsTypes";
+import {GET_VIDEOS, GET_VIDEO} from "./actionsTypes";
 
 const initialState = {
-  videos: []
+  videos: [],
+  video: {}
 };
 
 export default function VideoReducer(state = initialState, action) {
@@ -11,6 +12,11 @@ export default function VideoReducer(state = initialState, action) {
         ...state,
         videos: action.payload
       };
+    case GET_VIDEO:
+      return {
+        ...state,
+        video: action.payload
+      }
     default:
       return state;
   }

@@ -24,7 +24,9 @@ const videoSchema = new Schema({
   dislikes: {
     type: Number,
     default: 0
-  }
+  },
+  description: String,
+  keywords: [String]
 
 });
 

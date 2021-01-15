@@ -4,6 +4,8 @@ const User = require('../models/user');
 const root = {
   getVideo: async ({id}) => {
     const result = await Video.findById(id);
+    const user = await User.findById(result.author.id);
+    result.author.followers = user.followers;
     return result;
   },
   getVideos: async() => {
@@ -31,6 +33,14 @@ const root = {
       return result;
     } catch (err) {
       console.error(err);
+    }
+  },
+  getRecommendations: async ({keys}) => {
+    try {
+      const result = await Video.find({keywords: {$in: keys}});
+      return result;
+    } catch (error) {
+      console.error(error);
     }
   }
 };

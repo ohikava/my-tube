@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import PropTypes from "prop-types";
 import {useTranslation} from "react-i18next";
+import {Link} from "react-router-dom";
 
 const Wrapper = styled.div`
   display: flex;
@@ -61,17 +62,19 @@ const Views = styled.span`
 const ThumbnailRecommendation = ({ i: {id, views, author, title, duration}}) => {
   const {i18n, t} = useTranslation();
   return (
+    <Link to={`/video/${id}`}>
     <Wrapper>
-      <Column>
-        <Thumb src={`/thumbnails/${id}.jpg`} />
-        <Duration>{duration}</Duration>
-      </Column>
-      <Column>
-        <Title>{title}</Title>
-        <Author>{author.name}</Author>
-        <Views>{views} {t('Views')}</Views>
-      </Column>
+        <Column>
+          <Thumb src={`/thumbnails/${id}.jpg`} />
+          <Duration>{duration}</Duration>
+        </Column>
+        <Column>
+          <Title>{title}</Title>
+          <Author>{author.name}</Author>
+          <Views>{views} {t('Views')}</Views>
+        </Column>
     </Wrapper>
+    </Link>
   )
 };
 

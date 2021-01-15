@@ -33,12 +33,14 @@ const schema = buildSchema(`
     id: ID
     title: String
     duration: String
-    author: ShortUser
+    author: User
     date: String
     views: Int
     comments: [ID]
     likes: Int
     dislikes: Int
+    description: String
+    keywords: [String]
   }
   input VideoInput {
     title: String
@@ -49,6 +51,7 @@ const schema = buildSchema(`
     comments: [ID]
     likes: Int
     dislikes: Int
+    keywords: [String]
   }
   type Mutation {
     addVideo(input: VideoInput): Video
@@ -58,6 +61,7 @@ const schema = buildSchema(`
     getVideo(id: ID!): Video
     getUser(id: ID!): User
     getVideos:  [Video]
+    getRecommendations(keys: [String]!): [Video]
   }
   `);
 

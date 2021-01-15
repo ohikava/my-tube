@@ -127,19 +127,19 @@ const Data = styled.span`
   opacity: .5;
 `;
 
-const Thumb = ({ v: {id, author, likes, description, dislikes, data, title, views}}) => {
+const Thumb = ({ v: {id, author={}, likes, description, dislikes, data, title, views}}) => {
   const {i18n, t} = useTranslation();
   const {result: prettyViews, unit} = formatViews(views);
   return (
     <Wrapper>
-      <Video src={`/videos/${id}.webm`}  controls="controls" autoplay="true" />
+      <Video src={`/videos/${id}.webm`}  controls="controls" autoplay />
       <VideoBox />
       <TitleWrapper>
         <Title>{title}</Title>
         <More src="/arrow-down.svg" />
       </TitleWrapper>
       <MobileToggler>
-      <Views>{prettyViews} {t(unit)} {t('Views')}</Views>
+      <Views>{prettyViews} {t(unit)}{t('Views')}</Views>
       <HideFromMobile border="768">
         <Data>{data}</Data>
       </HideFromMobile>
@@ -155,7 +155,7 @@ const Thumb = ({ v: {id, author, likes, description, dislikes, data, title, view
         <Round src={`/users/${author.id}.jpg`} />
         <ChannelInfo>
           <ChannelName>{author.name}</ChannelName>
-          <ChannelSubscribers>{author.subscribers} {t('Subscribers')}</ChannelSubscribers>
+          <ChannelSubscribers>{author.followers} {t('Subscribers')}</ChannelSubscribers>
         </ChannelInfo>
         </Flex>
         <Subscribe>{t('Subscribe')}</Subscribe>
@@ -179,7 +179,7 @@ Thumb.propTypes = {
     author: PropTypes.exact({
       id: PropTypes.string.isRequired,
       name: PropTypes.string.isRequired,
-      subscibers: PropTypes.number.isRequired
+      followers: PropTypes.number.isRequired
     })
   })
 }

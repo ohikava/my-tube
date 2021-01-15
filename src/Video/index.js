@@ -1,10 +1,13 @@
-import React from 'react';
+import React,{useEffect} from 'react';
 import styled from 'styled-components';
 import Thumb from "./Thumb";
+import {useParams} from "react-router-dom";
 import Recommendations from "./Recommendations";
 import Comments from "./Comments";
 import HideFromMobile from "../utils/HideFromMobile";
 import HideFromComputer from "../utils/HideFromComputer";
+import {useDispatch, useSelector} from "react-redux";
+import {getVideo} from "../services/VideoReducer/actions";
 
 const Wrapper = styled.div`
   padding-top: 60px;
@@ -18,45 +21,34 @@ const Wrapper = styled.div`
 const Column = styled.div``;
 
 const Video = () => {
+  const {id} = useParams();
+  const dispatch = useDispatch();
+  const video = useSelector(s => s.video.video);
+
+  useEffect(() => {
+    dispatch(getVideo(id))
+    console.log(video)
+  }, [dispatch, id]);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [id])
   return (
     <Wrapper>
       <HideFromComputer border="768">
-      <Thumb v = {{
-        title: "2000 баксов за сигарету",
-        views: 153686,
-        likes: 35636,
-        dislikes: 5321,
-        id: 1,
-        author: {
-          id: 1,
-          name: "Гена Британец",
-          subscribers: 35800
-        }
-      }} />
+      <Thumb v = {video || {}} />
       <Recommendations />
       <Comments amount={1941}>
       </Comments>
       </HideFromComputer>
       <HideFromMobile border="768">
         <Column>
-        <Thumb v = {{
-          title: "2000 баксов за сигарету",
-          views: 153686,
-          likes: 35636,
-          dislikes: 5321,
-          data: "12.01.20",
-          id: 1,
-          author: {
-            id: 1,
-            name: "Гена Британец",
-            subscribers: 35800
-          }
-        }} />
+        <Thumb v = {video || {}} />
         <Comments amount={1941}>
         </Comments>
         </Column>
         <Column>
-          <Recommendations />
+          <Recommendations a={video.recommendations} />
         </Column>
       </HideFromMobile>
     </Wrapper>
