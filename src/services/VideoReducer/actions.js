@@ -1,4 +1,4 @@
-import {GET_VIDEOS, GET_VIDEO} from "./actionsTypes";
+import {GET_VIDEOS, GET_VIDEO, CLEAR} from "./actionsTypes";
 
 export const getVideos = () => async dispatch => {
   try {
@@ -90,3 +90,9 @@ export const getVideo = (id) => async dispatch => {
     console.error(error);
   }
 };
+
+export const clear = () => {
+  return {
+    type: CLEAR
+  }
+}

@@ -6,8 +6,10 @@ import Recommendations from "./Recommendations";
 import Comments from "./Comments";
 import HideFromMobile from "../utils/HideFromMobile";
 import HideFromComputer from "../utils/HideFromComputer";
+import SkeletonThumb from "./SkeletonThumb";
 import {useDispatch, useSelector} from "react-redux";
-import {getVideo} from "../services/VideoReducer/actions";
+import {getVideo, clear} from "../services/VideoReducer/actions";
+import SkeletonRecommendations from "./SkeletonRecommendations";
 
 const Wrapper = styled.div`
   padding-top: 60px;
@@ -26,6 +28,7 @@ const Video = () => {
   const video = useSelector(s => s.video.video);
 
   useEffect(() => {
+    dispatch(clear());
     dispatch(getVideo(id))
     console.log(video)
   }, [dispatch, id]);
@@ -36,19 +39,27 @@ const Video = () => {
   return (
     <Wrapper>
       <HideFromComputer border="768">
-      <Thumb v = {video || {}} />
-      <Recommendations />
+      {
+        Object.keys(video).length ? <Thumb v = {video || {}} /> : <SkeletonThumb />
+      }
+      {
+        Object.keys(video).length ? <Recommendations a={video.recommendations} /> : <SkeletonRecommendations />
+      }
       <Comments amount={1941}>
       </Comments>
       </HideFromComputer>
       <HideFromMobile border="768">
         <Column>
-        <Thumb v = {video || {}} />
+        {
+            Object.keys(video).length ? <Thumb v = {video || {}} /> : <SkeletonThumb />
+        }
         <Comments amount={1941}>
         </Comments>
         </Column>
         <Column>
-          <Recommendations a={video.recommendations} />
+          {
+            Object.keys(video).length ? <Recommendations a={video.recommendations} /> : <SkeletonRecommendations />
+          }
         </Column>
       </HideFromMobile>
     </Wrapper>

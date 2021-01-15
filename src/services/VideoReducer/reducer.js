@@ -1,4 +1,4 @@
-import {GET_VIDEOS, GET_VIDEO} from "./actionsTypes";
+import {GET_VIDEOS,CLEAR, GET_VIDEO} from "./actionsTypes";
 
 const initialState = {
   videos: [],
@@ -16,6 +16,11 @@ export default function VideoReducer(state = initialState, action) {
       return {
         ...state,
         video: action.payload
+      }
+    case CLEAR:
+      return {
+        ...state,
+        video: {}
       }
     default:
       return state;
