@@ -6,7 +6,11 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  cursor: pointer;
   gap: 5px;
+  @media(min-width: 768px) {
+    flex-direction: row;
+  }
 `;
 const Img = styled.img`
   width: 1.3rem;
@@ -15,6 +19,7 @@ const Img = styled.img`
 const Body = styled.span`
   font-size: .8rem;
   opacity: .6;
+  text-transform: uppercase;
 `;
 
 const Icon = ({children, cb, icon}) => (

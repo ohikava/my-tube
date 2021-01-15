@@ -2,15 +2,15 @@ import React from "react";
 import styled from 'styled-components';
 import PropTypes from "prop-types";
 
-const HideFromMobile = ({children, border}) => (
+const HideFromComputer = ({children, border}) => (
   <>
-  {window.innerWidth >= border ? children : ""}
+  {window.innerWidth < border ? children : ""}
   </>
 );
 
-HideFromMobile.propTypes = {
+HideFromComputer.propTypes = {
   border: PropTypes.number.isRequired,
   children: PropTypes.node
 };
 
-export default HideFromMobile;
+export default HideFromComputer;
