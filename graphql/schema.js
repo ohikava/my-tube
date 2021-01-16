@@ -62,6 +62,7 @@ const schema = buildSchema(`
     getUser(id: ID!): User
     getVideos:  [Video]
     getRecommendations(keys: [String]!): [Video]
+    searchVideo(search: String!): [Video]
   }
   `);
 

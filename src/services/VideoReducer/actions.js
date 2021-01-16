@@ -1,4 +1,4 @@
-import {GET_VIDEOS, GET_VIDEO, CLEAR} from "./actionsTypes";
+import {GET_VIDEOS, GET_VIDEO, SEARCH_VIDEO_SHORT, CLEAR} from "./actionsTypes";
 
 export const getVideos = () => async dispatch => {
   try {
@@ -95,4 +95,28 @@ export const clear = () => {
   return {
     type: CLEAR
   }
-}
+};
+
+export const searchVideoShort = (search) => async (dispatch) => {
+  const dirtyshort = await fetch('http://localhost:5000/graphql', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+    },
+    body: JSON.stringify({query: `{
+      searchVideo(search: "${search}") {
+        title
+        id
+        author {
+            name
+        }
+      }
+    }`})
+  });
+  const short = await dirtyshort.json();
+  dispatch({
+    type: SEARCH_VIDEO_SHORT,
+    payload: short.data.searchVideo
+  })
+};

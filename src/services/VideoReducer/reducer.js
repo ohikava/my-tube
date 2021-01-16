@@ -1,8 +1,9 @@
-import {GET_VIDEOS,CLEAR, GET_VIDEO} from "./actionsTypes";
+import {GET_VIDEOS,CLEAR, GET_VIDEO, SEARCH_VIDEO_SHORT} from "./actionsTypes";
 
 const initialState = {
   videos: [],
-  video: {}
+  video: {},
+  short: []
 };
 
 export default function VideoReducer(state = initialState, action) {
@@ -21,6 +22,11 @@ export default function VideoReducer(state = initialState, action) {
       return {
         ...state,
         video: {}
+      }
+    case SEARCH_VIDEO_SHORT:
+      return {
+        ...state,
+        short: action.payload
       }
     default:
       return state;

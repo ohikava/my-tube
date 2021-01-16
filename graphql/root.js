@@ -42,6 +42,28 @@ const root = {
     } catch (error) {
       console.error(error);
     }
+  },
+  searchVideo: async ({search}) => {
+    try {
+      const result = await Video.aggregate([{
+        "$search": {
+          "autocomplete": {
+            "path": "title",
+            "query": `${search}`,
+            "fuzzy": {
+              "maxEdits": 2
+            }
+          }
+        }
+      }]).limit(5);
+      result.forEach((item, i) => {
+        item.id = item._id;
+      });
+
+      return result;
+    } catch (err) {
+      console.error(err);
+    }
   }
 };
 

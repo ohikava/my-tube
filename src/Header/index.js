@@ -132,7 +132,7 @@ const Header = () => {
       <Languages open={isOpenLanguages} close={() => openLanguages(false)}/>
       <Themes open={isOpenTheme} close={() => openTheme(false)} />
       <MobileMenuContainer isOpen={isMobileMenuOpen}>
-        <Search />
+        <Search close={() => openMobileMenu(false)}/>
         <Title>{t('Notifications')}</Title>
         <Notifications/>
         <Navigation>
