@@ -2,6 +2,7 @@ import React from 'react';
 import Header from "./Header";
 import {createGlobalStyle} from "styled-components";
 import Home from "./Home";
+import Search from "./Search";
 import Video from "./Video";
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import {Provider} from "react-redux";
@@ -48,6 +49,9 @@ function App() {
                   </Route>
                   <Route path="/video/:id">
                     <Video />
+                  </Route>
+                  <Route path="/search">
+                    <Search />
                   </Route>
                 </Switch>
               </Router>

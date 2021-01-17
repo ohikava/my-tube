@@ -5,6 +5,7 @@ import {searchVideoShort} from "../services/VideoReducer/actions";
 import {useSelector, useDispatch} from 'react-redux';
 import Short from './Short';
 import PropTypes from "prop-types";
+import {useHistory} from 'react-router-dom';
 
 const Wrapper = styled.div`
   display: flex;
@@ -53,14 +54,21 @@ const Search = ({close}) => {
   const [search, setSearch] = useState('');
   const dispatch = useDispatch();
   const short = useSelector(s => s.video.short);
+  const history = useHistory();
+
   useEffect(() => {
     dispatch(searchVideoShort(search));
   }, [search, dispatch]);
 
+  const handleSearch = () => {
+    history.push(`/search?query=${search}`)
+    setSearch('');
+    close && close();
+  }
   return (
     <Wrapper>
       <Input placeholder={t('Type')} onChange={(e) => setSearch(e.target.value)} value={search}/>
-      <Button src="/loupe.svg" />
+      <Button src="/loupe.svg" onClick={handleSearch} />
       <Shorts>
         {
           short && short.map(i => <Short {...i} cb={() => {
