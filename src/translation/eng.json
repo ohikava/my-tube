@@ -39,5 +39,12 @@
     "Save": "Save",
     "Subscribers": "Subscribers",
     "Subscribe": "Subscribe",
-    "Comments": "Comments"
+    "Comments": "Comments",
+    "Login": "Login",
+    "Register": "Register",
+    "Email": "Email",
+    "Password": "Password",
+    "Repeat Password": "Repeat Password",
+    "Nickname": "Nickname",
+    "Forgot Password": "Forgot Password?"
 }

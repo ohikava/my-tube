@@ -25,6 +25,7 @@ const Wrapper = styled.div`
   @media(min-width: 768px) {
     width: 40%;
     height: auto;
+    box-shadow: 0 0 5px #000;
     overflow: hidden;
     left: 50%;
     display: ${props => props.open ? "flex" : 'none'};
@@ -32,7 +33,7 @@ const Wrapper = styled.div`
     transform: translate(-50%, -50%);
   }
   @media(min-width: 1024px) {
-    width: 20%;
+    width: 25%;
   }
 `;
 
@@ -49,7 +50,7 @@ const Button = styled.button`
   height: 50px;
   transition: 1s;
   border: none;
-  font-size: 1rem;
+  font-size: .9rem;
   font-weight: bold;
   letter-spacing: 1.5px;
   color: #000;
@@ -66,11 +67,12 @@ const Close = styled(Button)`
   }
 `;
 const Authentication = ({open, cb, page, changePage}) => {
+  const {i18n, t} = useTranslation();
   return (
     <Wrapper open={open}>
       <Togglers page={page}>
-        <Button isActive={page === 1} onClick={() => changePage(1)}>Login</Button>
-        <Button isActive={page === 0} onClick={() => changePage(0)}>Register</Button>
+        <Button isActive={page === 1} onClick={() => changePage(1)}>{t('Login')}</Button>
+        <Button isActive={page === 0} onClick={() => changePage(0)}>{t('Register')}</Button>
         <Close onClick={cb}><img src="/close.svg" /></Close>
       </Togglers>
       {

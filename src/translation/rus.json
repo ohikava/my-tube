@@ -39,5 +39,12 @@
   "Save": "Сохранить",
   "Subscribers": "Подписчики",
   "Subscribe": "Подписаться",
-  "Comments": "Комментарии"
+  "Comments": "Комментарии",
+  "Login": "Логин",
+  "Register": "Регистрация",
+  "Email": "Почта",
+  "Password": "Пароль",
+  "Repeat Password": "Повторите Пароль",
+  "Nickname": "Название канала",
+  "Forgot Password": "Забыли Пароль?"
 }

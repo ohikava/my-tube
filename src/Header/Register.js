@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
+import {useTranslation} from "react-i18next";
 
 const Wrapper = styled.form`
   display: flex;
@@ -37,7 +38,7 @@ const Icon = styled.img`
 `;
 
 const Submit = styled.button`
-  width: 40%;
+  width: 50%;
   padding: 10px 0;
   border: none;
   margin: auto;
@@ -46,18 +47,19 @@ const Submit = styled.button`
   font-size: 1.2rem;
 `;
 const Register = () => {
+  const {i18n, t} = useTranslation();
   return (
     <Wrapper>
-      <Label>Nickname:
+      <Label>{t('Nickname')}
       <Input type="text" placeholder="Wodey"/>
       </Label>
-      <Label>E-mail:
+      <Label>{t('Email')}
       <Input type="email" placeholder="myemail@gmail.com"/>
       </Label>
-      <Label>Password:
+      <Label>{t('Password')}
       <Input type="password" placeholder="************" />
       </Label>
-      <Label>Repeat Password:
+      <Label>{t('Repeat Password')}
       <Input type="password" placeholder="************" />
       </Label>
       <Icons>
@@ -65,7 +67,7 @@ const Register = () => {
         <Icon src="/twitter.svg" />
         <Icon src="/google.svg" />
       </Icons>
-      <Submit>Register</Submit>
+      <Submit>{t('Register')}</Submit>
     </Wrapper>
   )
 };

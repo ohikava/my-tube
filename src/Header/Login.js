@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
+import {useTranslation} from "react-i18next";
 
 const Wrapper = styled.form`
   display: flex;
@@ -45,13 +46,21 @@ const Submit = styled.button`
   background:${props => props.theme.maincolor};
   font-size: 1.2rem;
 `;
+
+const ForgotPassword = styled.span`
+  color: ${props => props.theme.activecold};
+  font-size: .9rem;
+  margin: auto;
+`;
+
 const Login = () => {
+  const {i18n, t} = useTranslation();
   return (
     <Wrapper>
-      <Label>E-mail:
+      <Label>{t('Email')}
       <Input type="email" placeholder="myemail@gmail.com"/>
       </Label>
-      <Label>Password:
+      <Label>{t('Password')}
       <Input type="password" placeholder="************" />
       </Label>
       <Icons>
@@ -59,7 +68,8 @@ const Login = () => {
         <Icon src="/twitter.svg" />
         <Icon src="/google.svg" />
       </Icons>
-      <Submit>Login</Submit>
+      <Submit>{t('Login')}</Submit>
+      <ForgotPassword>{t('Forgot Password')}</ForgotPassword>
     </Wrapper>
   )
 };
