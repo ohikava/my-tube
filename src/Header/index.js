@@ -15,6 +15,7 @@ import Spoiler from "../utils/Spoiler";
 import Languages from "./Languages";
 import DropDownMenu from "./DropDownMenu";
 import Themes from "./Themes";
+import Authentication from "./Authentication";
 
 const Wrapper = styled.header`
   display: flex;
@@ -97,6 +98,8 @@ const Header = () => {
   const [isOpenLanguages, openLanguages] = useState(false);
   const [isOpenAccount, openAccount] = useState(false);
   const [isOpenTheme, openTheme] = useState(false);
+  const [isOpenAuthentication, openAuthentication] = useState(false);
+  const [loginPage, changeLoginPage] = useState(0);
   const {t, i18n} = useTranslation();
 
   return (
@@ -115,8 +118,14 @@ const Header = () => {
           <IconWrapper onMouseOver={() => openAccount(true)} onMouseOut={() => openAccount(false)}>
             <Icon src="/user-profile.svg" />
             <DropDownMenu open={isOpenAccount}>
-              <Item>{t('Registration')}</Item>
-              <Item>{t('Login')}</Item>
+              <Item cb={() => {
+                changeLoginPage(0);
+                openAuthentication(true);
+              }}>{t('Registration')}</Item>
+              <Item cb={() => {
+                changeLoginPage(1);
+                openAuthentication(true);
+              }}>{t('Login')}</Item>
             </DropDownMenu>
           </IconWrapper>
           <IconWrapper onMouseOver={() => openSettings(true)} onMouseOut={() => openSettings(false)}>
@@ -131,6 +140,7 @@ const Header = () => {
       <Burger cb={() => openMobileMenu(!isMobileMenuOpen)} />
       <Languages open={isOpenLanguages} close={() => openLanguages(false)}/>
       <Themes open={isOpenTheme} close={() => openTheme(false)} />
+      <Authentication open={isOpenAuthentication} cb={() => openAuthentication(false)} page={loginPage} changePage={changeLoginPage}/>
       <MobileMenuContainer isOpen={isMobileMenuOpen}>
         <Search close={() => openMobileMenu(false)}/>
         <Title>{t('Notifications')}</Title>
@@ -142,8 +152,14 @@ const Header = () => {
         <Playlists />
         <Item>{t('Upload')}</Item>
         <Spoiler title={t('Account')} open={isOpenAccount} height={70} cb={() => openAccount(!isOpenAccount)}>
-          <Item>{t('Registration')}</Item>
-          <Item>{t('Login')}</Item>
+          <Item cb={() => {
+            changeLoginPage(0);
+            openAuthentication(true);
+          }}>{t('Registration')}</Item>
+          <Item cb={() => {
+            changeLoginPage(1);
+            openAuthentication(true);
+          }}>{t('Login')}</Item>
         </Spoiler>
         <Spoiler title={t('Settings')} open={isOpenSettings} height={70} cb={() => openSettings(!isOpenSettings)}>
           <Item cb={() => openLanguages(true)}>{t('Language')}</Item>
