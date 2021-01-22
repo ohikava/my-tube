@@ -7,6 +7,9 @@ const Wrapper = styled.div`
   display: flex;
   justify-content: space-between;
   padding: 10px 15px;
+  &:hover {
+    background: ${props => props.theme.maincolorlowopacity};
+  }
 `;
 const Title = styled.span`
   font-size: 1.2rem;

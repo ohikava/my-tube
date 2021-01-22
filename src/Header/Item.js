@@ -24,6 +24,7 @@ const Item = ({children, className, cb, img}) => (
 Item.propTypes = {
   children: PropTypes.string.isRequired,
   img: PropTypes.string,
+  cb: PropTypes.func
   //className: techical prop for the styled, you shouldnt use it
 }
 export default Item;

@@ -10,7 +10,8 @@ const themes = {
     fontcolor: '#000',
     activecold: '#2b5eff',
     activecoldfilter: "invert(27%) sepia(48%) saturate(2739%) hue-rotate(214deg) brightness(115%) contrast(115%)",
-    fontfamily: 'Source Sans Pro'
+    fontfamily: 'Source Sans Pro',
+    maincolorlowopacity: "#e8e3e3"
   },
   "Classic": {
     maincolor: '#ff0000',
@@ -18,7 +19,8 @@ const themes = {
     fontcolor: '#000',
     activecold: '#2b5eff',
     activecoldfilter: "invert(27%) sepia(48%) saturate(2739%) hue-rotate(214deg) brightness(115%) contrast(115%)",
-    fontfamily: 'Source Sans Pro'
+    fontfamily: 'Source Sans Pro',
+    maincolorlowopacity: "#ffc1c1"
   },
   "Dark": {
     maincolor: '#6b6b6b',
@@ -26,7 +28,8 @@ const themes = {
     fontcolor: '#ffffff',
     activecold: '#2b5eff',
     activecoldfilter: "invert(27%) sepia(48%) saturate(2739%) hue-rotate(214deg) brightness(115%) contrast(115%)",
-    fontfamily: 'Source Sans Pro'
+    fontfamily: 'Source Sans Pro',
+    maincolorlowopacity: "#e8e3e3"
   },
   "Cold": {
     maincolor: '#004cff',
@@ -34,7 +37,8 @@ const themes = {
     fontcolor: '#000',
     activecold: '#2b5eff',
     activecoldfilter: "invert(27%) sepia(48%) saturate(2739%) hue-rotate(214deg) brightness(115%) contrast(115%)",
-    fontfamily: 'Source Sans Pro'
+    fontfamily: 'Source Sans Pro',
+    maincolorlowopacity: "#c3cfff"
   }
 };
 

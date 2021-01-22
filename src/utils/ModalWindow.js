@@ -35,7 +35,7 @@ const Close = styled.img`
 `;
 
 const ModalWindow = ({children, title, close, open}) => {
-  const {i18n, t} = useTranslation();
+  const {t} = useTranslation();
   return (
     <Wrapper open={open}>
     <Row>

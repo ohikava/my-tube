@@ -2,12 +2,14 @@ const express = require('express');
 const cors = require('cors');
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
+const passport = require('passport');
 const {graphqlHTTP} = require('express-graphql');
 
 const root = require('./graphql/root');
 const schema = require("./graphql/schema");
 
 require("dotenv").config();
+require('./passportConfig');
 
 const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@cluster0.xynvl.mongodb.net/${process.env.DB_BASENAME}?retryWrites=true&w=majority`
 
@@ -28,4 +30,8 @@ app.use('/graphql', graphqlHTTP({
   schema: schema,
   rootValue: root
 }));
+app.use(passport.initialize());
+
+app.use('/auth', require('./routes/auth.js'));
+
 app.listen(5000);
