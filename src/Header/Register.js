@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useState} from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import {useTranslation} from "react-i18next";
@@ -48,19 +48,26 @@ const Submit = styled.button`
 `;
 const Register = () => {
   const {i18n, t} = useTranslation();
+  const [registerState, setRegisterState] = useState({
+    name: '',
+    email: '',
+    password: '',
+    password2: ''
+  });
+
   return (
     <Wrapper>
       <Label>{t('Nickname')}
-      <Input type="text" placeholder="Wodey"/>
+      <Input type="text" placeholder="Wodey" onChange={e => setRegisterState({...registerState, name: e.target.value})} value={registerState.name} />
       </Label>
       <Label>{t('Email')}
-      <Input type="email" placeholder="myemail@gmail.com"/>
+      <Input type="email" placeholder="myemail@gmail.com" onChange={e => setRegisterState({...registerState, email: e.target.value})} value={registerState.email}/>
       </Label>
       <Label>{t('Password')}
-      <Input type="password" placeholder="************" />
+      <Input type="password" placeholder="************" onChange={e => setRegisterState({...registerState, password: e.target.value})} value={registerState.password}/>
       </Label>
       <Label>{t('Repeat Password')}
-      <Input type="password" placeholder="************" />
+      <Input type="password" placeholder="************" onChange={e => setRegisterState({...registerState, password2: e.target.value})} value={registerState.password2}/>
       </Label>
       <Icons>
         <Icon src="/facebook.svg" />

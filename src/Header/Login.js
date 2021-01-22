@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import {useTranslation} from "react-i18next";
@@ -55,13 +55,18 @@ const ForgotPassword = styled.span`
 
 const Login = () => {
   const {i18n, t} = useTranslation();
+  const [loginState, setLoginState] = useState({
+    email: '',
+    password: ''
+  });
+
   return (
     <Wrapper>
       <Label>{t('Email')}
-      <Input type="email" placeholder="myemail@gmail.com"/>
+      <Input type="email" placeholder="myemail@gmail.com" onChange={e => setLoginState({...loginState, email: e.target.value})} value={loginState.email}/>
       </Label>
       <Label>{t('Password')}
-      <Input type="password" placeholder="************" />
+      <Input type="password" placeholder="************" onChange={e => setLoginState({...loginState, password: e.target.value})} value={loginState.password}/>
       </Label>
       <Icons>
         <Icon src="/facebook.svg" />
