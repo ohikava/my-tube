@@ -76,7 +76,7 @@ const Authentication = ({open, cb, page, changePage}) => {
         <Close onClick={cb}><img src="/close.svg" /></Close>
       </Togglers>
       {
-        page === 1 ? <Login /> : <Register />
+        page === 1 ? <Login /> : <Register close={cb} />
       }
     </Wrapper>
   )

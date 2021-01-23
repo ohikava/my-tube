@@ -1,5 +1,6 @@
 import {GET_VIDEOS, GET_VIDEO, SEARCH_VIDEO, SEARCH_VIDEO_SHORT, CLEAR} from "./actionsTypes";
 
+
 export const getVideos = () => async dispatch => {
   try {
   const dirtydata = await fetch('http://localhost:5000/graphql', {

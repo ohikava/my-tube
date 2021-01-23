@@ -4,6 +4,7 @@ const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const passport = require('passport');
 const {graphqlHTTP} = require('express-graphql');
+const morgan = require('morgan');
 
 const root = require('./graphql/root');
 const schema = require("./graphql/schema");
@@ -25,6 +26,7 @@ const app = express();
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 app.use(cors());
+app.use(morgan());
 app.use('/graphql', graphqlHTTP({
   graphiql: true,
   schema: schema,

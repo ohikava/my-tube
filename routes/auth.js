@@ -12,7 +12,7 @@ router.post('/register', async (req, res) => {
   if(existEmail.length) {
     res.send({
       type: 'error',
-      message: 'email already have been registred'
+      code: 1
     });
     return;
   };
@@ -20,15 +20,17 @@ router.post('/register', async (req, res) => {
   if(existName.length) {
     res.send({
       type: 'error',
-      message: 'name already have been registred'
-    })
+      code: 2
+    });
+    return;
   };
 
   if(password !== password2) {
     res.send({
       type: 'error',
-      msg: 'password 1 is not equal password 2'
+      code: 3
     });
+    return;
   };
 
   const newUser = new User({
@@ -40,7 +42,7 @@ router.post('/register', async (req, res) => {
   const result = await newUser.save();
   res.send({
     type: 'success',
-    msg: 'user have been successfully saved'
+    code: 'success'
   })
 } catch (err) {
   console.error(err);
