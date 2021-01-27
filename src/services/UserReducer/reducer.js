@@ -1,7 +1,8 @@
-import {REGISTER, CLEAR} from "./actionsTypes";
+import {REGISTER, LOGIN, CLEAR} from "./actionsTypes";
 
 const initialState = {
-  registrationError: null
+  registrationError: null,
+  token: null
 };
 
 export default function UserReducer (state = initialState, action) {
@@ -14,8 +15,15 @@ export default function UserReducer (state = initialState, action) {
     case CLEAR:
       return {
         ...state,
-        registrationError: null
+        registrationError: null,
+        loginError: null
       };
+    case LOGIN:
+      return {
+        ...state,
+        token: action.payload.token,
+        loginError: action.payload.code
+      }
     default:
       return state;
   }

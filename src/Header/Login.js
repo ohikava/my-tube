@@ -1,7 +1,10 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import {useTranslation} from "react-i18next";
+import {useDispatch, useSelector} from "react-redux";
+import {useHistory} from "react-router-dom";
+import {login} from "../services/UserReducer/actions";
 
 const Wrapper = styled.form`
   display: flex;
@@ -53,13 +56,36 @@ const ForgotPassword = styled.span`
   margin: auto;
 `;
 
+const errors = [
+  "Incorrect Email or Password"
+];
+
+const Error = styled.div`
+  font-size: 1.1rem;
+  color: ${props => props.theme.activecold};
+`;
+
 const Login = () => {
   const {i18n, t} = useTranslation();
+  const dispatch = useDispatch();
+  const history = useHistory();
+  const error = useSelector(s => s.user.loginError);
+  const isLogged = useSelector(s => s.user.token);
   const [loginState, setLoginState] = useState({
     email: '',
     password: ''
   });
 
+  const handleLogin = (e) => {
+    e.preventDefault();
+    dispatch(login(loginState.email, loginState.password));
+  };
+
+  useEffect(() => {
+    if(isLogged) {
+      history.push("/");
+    }
+  },[isLogged])
   return (
     <Wrapper>
       <Label>{t('Email')}
@@ -74,6 +100,7 @@ const Login = () => {
         <Icon src="/google.svg" />
       </Icons>
       <Submit>{t('Login')}</Submit>
+      {error && error !== 'success' && <Error>{t(errors[error - 1])}</Error>}
       <ForgotPassword>{t('Forgot Password')}</ForgotPassword>
     </Wrapper>
   )

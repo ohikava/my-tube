@@ -52,7 +52,7 @@ const Submit = styled.button`
 const errors = [
   'Email already have been used',
   'Name already have been used',
-  'Password 1 is not qual password 2'
+  'Password 1 is not equal password 2'
 ];
 
 const Error = styled.div`
@@ -122,7 +122,7 @@ const Register = ({close}) => {
         <Icon src="/google.svg" />
       </Icons>
       <Submit>{t('Register')}</Submit>
-      {registrationError && registrationError !== 'success' && (<Error>{errors[registrationError-1]}</Error>)}
+      {registrationError && registrationError !== 'success' && (<Error>{t(errors[registrationError-1])}</Error>)}
     </Wrapper>
   )
 };

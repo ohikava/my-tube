@@ -40,9 +40,15 @@ router.post('/register', async (req, res) => {
   });
 
   const result = await newUser.save();
+
+  const token = jwt.sign({
+    user: result
+  }, process.env.JWT_KEY, {expiresIn: '1h'});
+
   res.send({
     type: 'success',
-    code: 'success'
+    code: 'success',
+    token: token
   })
 } catch (err) {
   console.error(err);
@@ -54,6 +60,7 @@ router.post('/login', (req, res) => {
     if(err || !user) {
       return res.send({
         message: "something went wrong",
+        code: 0,
         err: err,
         user: user
       })
@@ -70,7 +77,8 @@ router.post('/login', (req, res) => {
       }, process.env.JWT_KEY, {expiresIn: '1h'});
 
       return res.json({
-        token: token
+        token: token,
+        code: 'success'
       });
 
     })
