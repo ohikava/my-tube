@@ -50,6 +50,7 @@
     "Incorrect Email or Password": "Incorrect Email or Password",
     "Email already have been used": "Email already have been used",
     "Name already have been used": "Name already have been used",
-    "Password 1 is not equal password 2": "Password 1 is not equal password 2"
+    "Password 1 is not equal password 2": "Password 1 is not equal password 2",
+    "Empty": "empty"
 
 }

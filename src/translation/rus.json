@@ -50,5 +50,6 @@
   "Incorrect Email or Password": "Неправильный Логин или Пароль",
   "Email already have been used": "Такой логин уже существует",
   "Name already have been used": "Имя занято",
-  "Password 1 is not equal password 2": "Пароль 1 не равен паролю 2"
+  "Password 1 is not equal password 2": "Пароль 1 не равен паролю 2",
+  "Empty": "пусто"
 }

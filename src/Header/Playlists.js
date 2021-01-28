@@ -1,7 +1,9 @@
-import React from 'react';
+import React,{useEffect} from 'react';
 import styled from 'styled-components';
 import Item from "./Item";
 import {useTranslation} from "react-i18next";
+import {useDispatch, useSelector} from "react-redux";
+import {getPlaylists} from "../services/PlaylistsReducer/actions";
 
 const Wrapper = styled.div`
   display: flex;
@@ -39,13 +41,19 @@ const More = styled.span`
 
 const Playlists = () => {
   const {i18n, t} = useTranslation();
+  const dispatch = useDispatch();
+  const token = useSelector(s => s.user.token);
+  const playlists = useSelector(s => s.playlists.playlistsShort);
+  useEffect(() => {
+    dispatch(getPlaylists(token));
+  })
   return (
     <Wrapper>
     <Title>{t('My Playlists')}</Title>
       {
-        data.map(i => <Item img="/playlist.svg">{i.body}</Item>)
+        playlists.map(i => <Item img="/playlist.svg">{i.body}</Item>)
       }
-    <More>{t('More')}</More>
+    {playlists.length > 0 ? <More>{t('More')}</More> : <More>{t("Empty")}</More> }
     </Wrapper>
   )
 };

@@ -20,6 +20,7 @@ const Title = styled.span`
 const More = styled.span`
   font-size: 1rem;
   cursor: pointer;
+  text-transform: uppercase
   text-align: center;
   color: ${props => props.theme.activecold};
   @media(min-width: 768px) {
@@ -42,7 +43,7 @@ const Subscriptions = () => {
       {
         subscriptions.map((i, index) => <Item i={i} />)
       }
-      <More>{t('More')}</More>
+      {subscriptions.length > 0 ? <More>{t('More')}</More> : <More>{t('Empty')}</More>}
     </Wrapper>
   )
 };

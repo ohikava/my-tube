@@ -1,7 +1,10 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import styled from 'styled-components';
 import Item from "./NotificationItem";
 import PropTypes from "prop-types";
+import {useDispatch, useSelector} from "react-redux";
+import {getNotifications} from "../services/NotificationsReducer/actions";
+import {useTranslation} from "react-i18next";
 
 let data = [
   {
@@ -51,18 +54,17 @@ const Error = styled.span`
 `;
 
 const Notifications = ({isOpenNotifications}) => {
-  if(data.length === 0) {
-    return (
-      <Wrapper isOpenNotifications={isOpenNotifications} data-testid={'notifications'}>
-        <Error>Notification box is empty</Error>
-      </Wrapper>
-    )
-  };
-
+  const notifications = useSelector(s => s.notifications.notifications);
+  const token = useSelector(s => s.user.token);
+  const dispatch = useDispatch();
+  const {t} = useTranslation();
+  useEffect(() => {
+    dispatch(getNotifications(token));
+  })
   return (
     <Wrapper open={isOpenNotifications} data-testid={'notifications'}>
       {
-        data.map(i => <Item key={i.id} i={i} />)
+        notifications.length > 0 ? notifications.map(i => <Item key={i.id} i={i} />) : <Error>{t('Empty')}</Error>
       }
     </Wrapper>
   );
