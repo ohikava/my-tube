@@ -1,7 +1,9 @@
-import React from 'react';
+import React,{useEffect} from 'react';
 import styled from 'styled-components';
+import {useDispatch, useSelector} from 'react-redux';
 import Item from "./NotificationItem";
 import {useTranslation} from "react-i18next";
+import {getSubscriptions} from '../services/SubscribeReducer/actions';
 
 const Wrapper = styled.div`
   display: flex;
@@ -10,23 +12,6 @@ const Wrapper = styled.div`
   padding: 10px 0;
 `;
 
-const subscriptions = [
-  {
-    body: "Pavel Durov",
-    icon: "https://www.spot.uz/media/img/2020/10/OiUFM616023113662615_l.jpg"
-  },
-  {
-    body: "Lana Rhouds",
-    icon: "https://fs.kinomania.ru/file/person/9/bd/9bd969bc03449a49b712942745b3d52b.jpeg"
-  },
-  {
-    body: "LeoLulu",
-    icon: "https://s10.favim.com/orig/160418/quote-blonde-jay-alvarrez-alexis-ren-Favim.com-4223665.jpeg"
-  }, {
-    body: "Eva elfie",
-    icon: "https://i.redd.it/dk16h5ihwvj51.jpg"
-  }
-];
 
 const Title = styled.span`
   font-size: 1.3rem;
@@ -44,6 +29,13 @@ const More = styled.span`
 
 const Subscriptions = () => {
   const {i18n, t} = useTranslation();
+  const dispatch = useDispatch();
+  const subscriptions = useSelector(s => s.subs.subsShort);
+  const token = useSelector(s => s.user.token);
+
+  useEffect(() => {
+    dispatch(getSubscriptions(token));
+  })
   return (
     <Wrapper>
     <Title>{t('My Followings')}</Title>
