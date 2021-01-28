@@ -69,7 +69,7 @@ const Login = () => {
   const {i18n, t} = useTranslation();
   const dispatch = useDispatch();
   const history = useHistory();
-  const error = useSelector(s => s.user.loginError);
+  const [error, setError] = useState(null);
   const isLogged = useSelector(s => s.user.token);
   const [loginState, setLoginState] = useState({
     email: '',
@@ -78,7 +78,7 @@ const Login = () => {
 
   const handleLogin = (e) => {
     e.preventDefault();
-    dispatch(login(loginState.email, loginState.password));
+    dispatch(login(loginState.email, loginState.password, setError));
   };
 
   useEffect(() => {
@@ -87,12 +87,18 @@ const Login = () => {
     }
   },[isLogged])
   return (
-    <Wrapper>
+    <Wrapper onSubmit={handleLogin}>
       <Label>{t('Email')}
-      <Input type="email" placeholder="myemail@gmail.com" onChange={e => setLoginState({...loginState, email: e.target.value})} value={loginState.email}/>
+      <Input type="email" placeholder="myemail@gmail.com" onChange={e => {
+        setError(null);
+        setLoginState({...loginState, email: e.target.value})
+      }} value={loginState.email}/>
       </Label>
       <Label>{t('Password')}
-      <Input type="password" placeholder="************" onChange={e => setLoginState({...loginState, password: e.target.value})} value={loginState.password}/>
+      <Input type="password" placeholder="************" onChange={e => {
+        setError(null);
+        setLoginState({...loginState, password: e.target.value})
+      }} value={loginState.password}/>
       </Label>
       <Icons>
         <Icon src="/facebook.svg" />
@@ -100,7 +106,7 @@ const Login = () => {
         <Icon src="/google.svg" />
       </Icons>
       <Submit>{t('Login')}</Submit>
-      {error && error !== 'success' && <Error>{t(errors[error - 1])}</Error>}
+      {error && <Error>{t(errors[error - 1])}</Error>}
       <ForgotPassword>{t('Forgot Password')}</ForgotPassword>
     </Wrapper>
   )

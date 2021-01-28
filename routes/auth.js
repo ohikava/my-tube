@@ -49,7 +49,8 @@ router.post('/register', async (req, res) => {
     type: 'success',
     code: 'success',
     token: token
-  })
+  });
+
 } catch (err) {
   console.error(err);
 }
@@ -60,7 +61,8 @@ router.post('/login', (req, res) => {
     if(err || !user) {
       return res.send({
         message: "something went wrong",
-        code: 0,
+        type: 'error',
+        code: 1,
         err: err,
         user: user
       })

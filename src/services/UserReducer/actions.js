@@ -1,6 +1,6 @@
-import {REGISTER, LOGIN, CLEAR} from "./actionsTypes";
+import {LOGIN} from "./actionsTypes";
 
-export const register = (data) => async dispatch => {
+export const register = (email, name, password, password2, cb) => async dispatch => {
   try {
   const response = await fetch('http://localhost:5000/auth/register', {
     method: 'POST',
@@ -8,12 +8,17 @@ export const register = (data) => async dispatch => {
       'Content-Type': 'application/json',
       'Accept': 'application/json'
     },
-    body: JSON.stringify(data)
+    body: JSON.stringify({email, password, name, password2})
   });
   const result = await response.json();
-  console.log(result)
+
+  if(result.type === 'error') {
+    cb(result.code);
+    return;
+  };
+
   dispatch({
-    type: REGISTER,
+    type: LOGIN,
     payload: result
   });
 
@@ -22,13 +27,7 @@ export const register = (data) => async dispatch => {
 }
 };
 
-export const clear = () => {
-  return {
-    type: CLEAR
-  }
-};
-
-export const login = (data) => async dispatch => {
+export const login = (email, password, cb) => async dispatch => {
   try {
       const response = await fetch('http://localhost:5000/auth/login', {
         method: 'POST',
@@ -36,10 +35,15 @@ export const login = (data) => async dispatch => {
           'Content-Type': 'application/json',
           'Accept': 'application/json'
         },
-        body: JSON.stringify(data)
+        body: JSON.stringify({email, password})
       });
 
       const result = await response.json();
+      if(result.type === 'error') {
+        cb(result.code);
+        return;
+      }
+
       dispatch({
         type: LOGIN,
         payload: result

@@ -1,8 +1,8 @@
 import React,{useState, useEffect} from 'react';
 import styled from 'styled-components';
 import {useDispatch, useSelector} from 'react-redux';
-import {register, clear} from '../services/UserReducer/actions';
-import PropTypes from 'prop-types';
+import {register} from '../services/UserReducer/actions';
+import {useHistory} from 'react-router-dom';
 import {useTranslation} from "react-i18next";
 
 const Wrapper = styled.form`
@@ -59,60 +59,53 @@ const Error = styled.div`
   font-size: 1.1rem;
   color: ${props => props.theme.activecold};
 `;
-const Register = ({close}) => {
+const Register = () => {
   const {i18n, t} = useTranslation();
+  const history = useHistory();
   const [registerState, setRegisterState] = useState({
     name: '',
     email: '',
     password: '',
     password2: ''
   });
-
+  const isLogged = useSelector(s => s.user.token);
   const dispatch = useDispatch();
-  const registrationError = useSelector(s => s.user.registrationError);
+  const [error, setError] = useState();
 
   useEffect(() => {
-    console.log(registrationError);
-    if (registrationError === 'success') {
-      close && close();
-      setRegisterState({
-        name: '',
-        email: '',
-        password: '',
-        password2: ''
-      });
-      dispatch(clear());
+    if (isLogged) {
+      history.push('/');
     }
-  }, [registrationError]);
+  }, [isLogged]);
 
-  const submit = (e) => {
+  const registerHandler = (e) => {
     e.preventDefault();
-    dispatch(register(registerState));
-  };
+    dispatch(register(registerState.email, registerState.name, registerState.password, registerState.password2, setError));
+  }
 
   return (
-    <Wrapper onSubmit={submit}>
+    <Wrapper onSubmit={registerHandler}>
       <Label>{t('Nickname')}
       <Input type="text" placeholder="Wodey" onChange={e => {
-        dispatch(clear());
+        setError(null);
         setRegisterState({...registerState, name: e.target.value})
       }} value={registerState.name} required/>
       </Label>
       <Label>{t('Email')}
       <Input type="email" placeholder="myemail@gmail.com" onChange={e => {
-        dispatch(clear());
+        setError(null);
         setRegisterState({...registerState, email: e.target.value})
       }} value={registerState.email} required/>
       </Label>
       <Label>{t('Password')}
       <Input type="password" placeholder="************" onChange={e => {
-        dispatch(clear());
+        setError(null);
         setRegisterState({...registerState, password: e.target.value})
       }} value={registerState.password} required/>
       </Label>
       <Label>{t('Repeat Password')}
       <Input type="password" placeholder="************" onChange={e => {
-        dispatch(clear());
+        setError(null);
         setRegisterState({...registerState, password2: e.target.value})
       }} value={registerState.password2} required/>
       </Label>
@@ -122,12 +115,9 @@ const Register = ({close}) => {
         <Icon src="/google.svg" />
       </Icons>
       <Submit>{t('Register')}</Submit>
-      {registrationError && registrationError !== 'success' && (<Error>{t(errors[registrationError-1])}</Error>)}
+      {error && (<Error>{t(errors[error-1])}</Error>)}
     </Wrapper>
   )
 };
 
-Register.propTypes = {
-  close: PropTypes.func.isRequired
-}
 export default Register;
