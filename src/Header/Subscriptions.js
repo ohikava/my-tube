@@ -36,7 +36,7 @@ const Subscriptions = () => {
 
   useEffect(() => {
     dispatch(getSubscriptions(token));
-  })
+  }, [token])
   return (
     <Wrapper>
     <Title>{t('My Followings')}</Title>

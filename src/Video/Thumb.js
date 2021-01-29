@@ -5,6 +5,8 @@ import Icon from "./Icon";
 import {useTranslation} from "react-i18next";
 import {formatViews} from "../utils/format";
 import HideFromMobile from "../utils/HideFromMobile";
+import {useSelector} from 'react-redux';
+import {subscribe} from "../services/SubscribeReducer/actions";
 
 const Wrapper = styled.div`
   display: flex;
@@ -127,9 +129,25 @@ const Data = styled.span`
   opacity: .5;
 `;
 
+const checkArrayContain = (array, id) => {
+  for(let i =0; i < array.length; i ++) {
+    if(array[i].id === id) {
+      return true;
+    }
+  }
+  return false;
+}
+
 const Thumb = ({ v: {id, author={}, likes, description, dislikes, data, title, views}}) => {
   const {i18n, t} = useTranslation();
+  const token = useSelector(s => s.user.token);
   const {result: prettyViews, unit} = formatViews(views);
+  const subscriptions = useSelector(s => s.subs.subsShort);
+
+  const handleSubscribe = () => {
+    subscribe(token, author.id);
+  };
+
   return (
     <Wrapper>
       <Video src={`/videos/${id}.webm`}  controls="controls" autoplay />
@@ -158,7 +176,7 @@ const Thumb = ({ v: {id, author={}, likes, description, dislikes, data, title, v
           <ChannelSubscribers>{author.followers} {t('Subscribers')}</ChannelSubscribers>
         </ChannelInfo>
         </Flex>
-        <Subscribe>{t('Subscribe')}</Subscribe>
+        {checkArrayContain(subscriptions, author.id) ? <ChannelName>{t('Subscribed')}</ChannelName> : <Subscribe onClick={handleSubscribe}>{t('Subscribe')}</Subscribe>}
       </Row>
       <Row>
         <Description>{description}</Description>

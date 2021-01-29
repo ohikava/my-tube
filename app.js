@@ -35,5 +35,6 @@ app.use('/graphql', graphqlHTTP({
 app.use(passport.initialize());
 
 app.use('/auth', require('./routes/auth.js'));
+app.use('/user', require('./routes/user.js'));
 
 app.listen(5000);

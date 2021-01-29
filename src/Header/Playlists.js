@@ -11,20 +11,6 @@ const Wrapper = styled.div`
   gap: 10px;
 `;
 
-const data = [
-  {
-    body: "Playlist 1",
-    id: 0
-  }, {
-    body: "Playlist 2",
-    id: 1
-  },
-  {
-    body: "Playlist 3",
-    id: 2
-  }
-];
-
 const Title = styled.span`
   font-size: 1.3rem;
 `;
@@ -46,7 +32,7 @@ const Playlists = () => {
   const playlists = useSelector(s => s.playlists.playlistsShort);
   useEffect(() => {
     dispatch(getPlaylists(token));
-  })
+  }, [token])
   return (
     <Wrapper>
     <Title>{t('My Playlists')}</Title>

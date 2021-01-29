@@ -6,23 +6,6 @@ import {useDispatch, useSelector} from "react-redux";
 import {getNotifications} from "../services/NotificationsReducer/actions";
 import {useTranslation} from "react-i18next";
 
-let data = [
-  {
-    body: "Новое видео о странный вещах",
-    icon: "/users/user1.jpg",
-    id: 0
-  }, {
-    body: "Еще одно тупое видео",
-    icon: "/users/user2.jpg",
-    id: 1
-  },
-  {
-    body: "Очень тупое видео",
-    icon: "/users/user3.jpg",
-    id: 2
-  }
-];
-
 
 const Wrapper = styled.div`
   display: flex;
@@ -60,7 +43,7 @@ const Notifications = ({isOpenNotifications}) => {
   const {t} = useTranslation();
   useEffect(() => {
     dispatch(getNotifications(token));
-  })
+  }, [token])
   return (
     <Wrapper open={isOpenNotifications} data-testid={'notifications'}>
       {

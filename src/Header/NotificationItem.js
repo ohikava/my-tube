@@ -19,7 +19,7 @@ const Body = styled.span`
 
 const Item = ({i}) => (
   <Wrapper data-testid={'item'}>
-    <Icon src={i.icon} />
+    <Icon src={`/users/${i.id}.jpg`} />
     <Body>{i.body}</Body>
   </Wrapper>
 );
