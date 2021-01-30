@@ -9,7 +9,7 @@ const UserSchema = new Schema({
   playlists: [Schema.Types.ObjectID],
   subsciptions: [Schema.Types.ObjectID],
   notifications: [Schema.Types.ObjectID],
-  followers: Number,
+  followers: {type: Number, default: 0},
   email: String,
   password: String
 });

@@ -5,8 +5,8 @@ import Icon from "./Icon";
 import {useTranslation} from "react-i18next";
 import {formatViews} from "../utils/format";
 import HideFromMobile from "../utils/HideFromMobile";
-import {useSelector} from 'react-redux';
-import {subscribe} from "../services/SubscribeReducer/actions";
+import {useSelector, useDispatch} from 'react-redux';
+import {subscribe, unsubscribe, getSubscriptions} from "../services/SubscribeReducer/actions";
 
 const Wrapper = styled.div`
   display: flex;
@@ -98,7 +98,7 @@ const Subscribe = styled.button`
   outline: none;
   text-transform: uppercase;
   @media(min-width: 768px) {
-    background: ${props => props.theme.maincolor};
+    background: ${props => props.inverse ? props.theme.activecold : props.theme.maincolor};
     cursor: pointer;
     padding: 5px 10px;
     color: ${props => props.theme.fontcolor};
@@ -143,11 +143,17 @@ const Thumb = ({ v: {id, author={}, likes, description, dislikes, data, title, v
   const token = useSelector(s => s.user.token);
   const {result: prettyViews, unit} = formatViews(views);
   const subscriptions = useSelector(s => s.subs.subsShort);
+  const dispatch = useDispatch();
 
-  const handleSubscribe = () => {
-    subscribe(token, author.id);
+  const handleSubscribe = async () => {
+    await subscribe(token, author.id);
+    dispatch(getSubscriptions(token));
   };
 
+  const handleUnsubscribe = async () => {
+    await unsubscribe(token, author.id);
+    dispatch(getSubscriptions(token));
+  }
   return (
     <Wrapper>
       <Video src={`/videos/${id}.webm`}  controls="controls" autoplay />
@@ -176,7 +182,7 @@ const Thumb = ({ v: {id, author={}, likes, description, dislikes, data, title, v
           <ChannelSubscribers>{author.followers} {t('Subscribers')}</ChannelSubscribers>
         </ChannelInfo>
         </Flex>
-        {checkArrayContain(subscriptions, author.id) ? <ChannelName>{t('Subscribed')}</ChannelName> : <Subscribe onClick={handleSubscribe}>{t('Subscribe')}</Subscribe>}
+        {checkArrayContain(subscriptions, author.id) ? <Subscribe onClick={handleUnsubscribe} inverse>{t('Subscribed')}</Subscribe> : <Subscribe onClick={handleSubscribe}>{t('Subscribe')}</Subscribe>}
       </Row>
       <Row>
         <Description>{description}</Description>

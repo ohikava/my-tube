@@ -71,7 +71,7 @@ const Title = styled.span`
 const navigation = [
   {
     body: "Main",
-    link: ""
+    link: "/"
   },
   {
     body: "Followings",
@@ -146,9 +146,9 @@ const Header = () => {
         <Title>{t('Notifications')}</Title>
         <Notifications/>
         <Navigation>
-          {navigation.map(i => <Item>{t(`${i.body}`)}</Item>)}
+          {navigation.map(i => <Item to={i.link}>{t(`${i.body}`)}</Item>)}
         </Navigation>
-        <Subscriptions />
+        <Subscriptions close={() => openMobileMenu(false)} />
         <Playlists />
         <Item>{t('Upload')}</Item>
         <Spoiler title={t('Account')} open={isOpenAccount} height={70} cb={() => openAccount(!isOpenAccount)}>

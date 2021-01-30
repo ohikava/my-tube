@@ -2,6 +2,8 @@ import React,{useEffect} from 'react';
 import styled from 'styled-components';
 import {useDispatch, useSelector} from 'react-redux';
 import Item from "./NotificationItem";
+import PropTypes from "prop-types";
+import {Link} from "react-router-dom";
 import {useTranslation} from "react-i18next";
 import {getSubscriptions} from '../services/SubscribeReducer/actions';
 
@@ -28,7 +30,7 @@ const More = styled.span`
   }
 `;
 
-const Subscriptions = () => {
+const Subscriptions = ({close}) => {
   const {i18n, t} = useTranslation();
   const dispatch = useDispatch();
   const subscriptions = useSelector(s => s.subs.subsShort);
@@ -41,11 +43,15 @@ const Subscriptions = () => {
     <Wrapper>
     <Title>{t('My Followings')}</Title>
       {
-        subscriptions.map((i, index) => <Item i={i} />)
+        subscriptions.map((i, index) => <Item i={i} cb={close} />)
       }
-      {subscriptions.length > 0 ? <More>{t('More')}</More> : <More>{t('Empty')}</More>}
+      {subscriptions.length > 0 ? <Link to="/subscriptions"><More onClick={close}>{t('More')}</More></Link> : <More>{t('Empty')}</More>}
     </Wrapper>
   )
+};
+
+Subscriptions.propTypes = {
+  close: PropTypes.func
 };
 
 export default Subscriptions;

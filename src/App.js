@@ -4,6 +4,7 @@ import {createGlobalStyle} from "styled-components";
 import Home from "./Home";
 import Search from "./Search";
 import Video from "./Video";
+import Subscriptions from "./Subscriptions";
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import {Provider} from "react-redux";
 import {PersistGate} from "redux-persist/integration/react";
@@ -52,6 +53,9 @@ function App() {
                   </Route>
                   <Route path="/search">
                     <Search />
+                  </Route>
+                  <Route exact path="/subscriptions">
+                    <Subscriptions />
                   </Route>
                 </Switch>
               </Router>

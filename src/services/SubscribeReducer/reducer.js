@@ -1,7 +1,8 @@
-import {GET_SUBSCRIPTIONS} from "./actionsTypes";
+import {GET_SUBSCRIPTIONS, GET_SUBSCRIPTIONS_ALL} from "./actionsTypes";
 
 const initialState = {
-  subsShort: []
+  subsShort: [],
+  subs: []
 };
 
 export default function SubscribeReducer(state = initialState, action) {
@@ -10,6 +11,11 @@ export default function SubscribeReducer(state = initialState, action) {
       return {
         ...state,
         subsShort: action.payload
+      }
+    case GET_SUBSCRIPTIONS_ALL:
+      return {
+        ...state,
+        subs: action.payload
       }
     default:
       return state;

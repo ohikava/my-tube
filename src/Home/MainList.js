@@ -31,7 +31,7 @@ const NavigationPanel = styled.div`
 const navigation = [
   {
     body: "Main",
-    link: ""
+    link: "/"
   },
   {
     body: "Followings",
@@ -58,7 +58,7 @@ const MainList = ({children}) => {
       <HideFromMobile border={426}>
         <NavigationPanel>
           <Navigation>
-            {navigation.map(i => <Item>{t(`${i.body}`)}</Item>)}
+            {navigation.map(i => <Item to={i.link}>{t(`${i.body}`)}</Item>)}
           </Navigation>
           <Subscriptions />
           <Playlists />
